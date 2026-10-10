@@ -36,14 +36,19 @@ Requires WordPress 6.6 and PHP 7.4 or later.
    default line is used.
 2. **Featured images** drive the look: the cover, the cards, the rows, and the
    blurred ground behind each page all come from them.
-3. **About page.** Create a page with the slug `about` and insert the
-   *About: the four tags* pattern (category *gexis*).
-4. **Author page.** Fill in *Author page (gexis)* at the bottom of your user
-   profile: location, lede, now, summary, links, work, skills, facts and a CV
-   PDF URL. Repeating fields take one entry per line; the help text under each
-   field shows the format.
+3. **About me** in the header opens the owner's author page, which is a CV.
+   Fill in *Author page (gexis)* at the bottom of your user profile:
+   location, lede, now, summary, links, work, skills, facts and a CV PDF URL.
+   Repeating fields take one entry per line; the help text under each field
+   shows the format. The owner is the first administrator unless you choose
+   someone else in the Customizer.
+4. **This site** is the page about the site itself. Create a page with the
+   slug `site` and insert the *This site: the four tags* pattern (category
+   *gexis*). An existing page with the slug `about` is used if there is no
+   `site` page.
 5. **Customizer → gexis.** Set the default background image (used behind pages
-   with no image of their own) and, optionally, suggested searches.
+   with no image of their own), the owner, and, optionally, suggested
+   searches.
 
 The *Archive* link goes to the posts page if you have set one (Settings →
 Reading); otherwise to `/archive/`, which the theme provides.

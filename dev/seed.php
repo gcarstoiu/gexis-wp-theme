@@ -191,13 +191,13 @@ foreach ( $cv as $k => $v ) {
 	update_user_meta( 1, 'gexis_cv_' . $k, $v );
 }
 
-/* About, built from the theme's pattern. */
-$about = WP_Block_Patterns_Registry::get_instance()->get_registered( 'gexis/about' );
+/* This site, built from the theme's pattern. */
+$about = WP_Block_Patterns_Registry::get_instance()->get_registered( 'gexis/this-site' );
 wp_insert_post(
 	array(
 		'post_type'    => 'page',
-		'post_title'   => 'About',
-		'post_name'    => 'about',
+		'post_title'   => 'This site',
+		'post_name'    => 'site',
 		'post_status'  => 'publish',
 		'post_content' => $about ? $about['content'] : '',
 	)

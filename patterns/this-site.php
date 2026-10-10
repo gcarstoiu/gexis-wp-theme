@@ -1,10 +1,10 @@
 <?php
 /**
- * Title: About: the four tags
- * Slug: gexis/about
+ * Title: This site: the four tags
+ * Slug: gexis/this-site
  * Categories: gexis, about
  * Post Types: page
- * Description: An intro line, the four gexis tag cards with their counts, and two short sections. Insert it on the About page.
+ * Description: An intro line, the four gexis tag cards with their counts, and two short sections. Insert it on the This site page (slug `site`).
  *
  * @package gexis
  */

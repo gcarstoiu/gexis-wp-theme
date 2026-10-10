@@ -17,6 +17,14 @@ every place the theme departs from it, or had to choose where it was silent.
   core Comment Template plus two filters in `inc/comments.php`.
 - **The prototype's Template bar** is a review aid and is not built.
 
+- **Navigation is About me · Archive · This site · Search**, not the
+  handoff's Archive · About · Search (owner's request, after launch). About me
+  opens the owner's author page, the CV, so the person behind the site is one
+  tap from anywhere. The handoff's About page describes the site — its four
+  tags, comments, feeds — so it is renamed This site (slug `site`). The
+  footer carries both. The owner is the first administrator, or the user
+  chosen under Customizer → gexis → Owner.
+
 ## Values
 
 - **Two clamps differ between the handoff README and the prototype.** Home

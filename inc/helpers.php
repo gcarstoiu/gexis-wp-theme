@@ -143,11 +143,51 @@ function gexis_search_url() {
 }
 
 /**
- * The About page (slug `about`), if it exists.
+ * The site's owner: the person "About me" points to. The Customizer setting
+ * (gexis → Owner) if set, else the first administrator.
+ *
+ * @return int User ID, or 0 if there is no one to point to.
+ */
+function gexis_owner_id() {
+	$id = (int) get_theme_mod( 'gexis_owner', 0 );
+	if ( $id && get_userdata( $id ) ) {
+		return $id;
+	}
+	$admins = get_users(
+		array(
+			'role'    => 'administrator',
+			'orderby' => 'ID',
+			'order'   => 'ASC',
+			'number'  => 1,
+			'fields'  => 'ID',
+		)
+	);
+	return $admins ? (int) $admins[0] : 0;
+}
+
+/**
+ * "About me": the owner's author page, which is the CV.
  *
  * @return string
  */
-function gexis_about_url() {
-	$page = get_page_by_path( 'about' );
-	return $page ? get_permalink( $page ) : home_url( '/about/' );
+function gexis_owner_url() {
+	$id = gexis_owner_id();
+	return $id ? get_author_posts_url( $id ) : home_url( '/' );
+}
+
+/**
+ * "This site": the page about the site itself — the four tags, comments,
+ * feeds. A page with the slug `site`; a page with the older slug `about` is
+ * still found, so an existing About page keeps working.
+ *
+ * @return string
+ */
+function gexis_site_page_url() {
+	foreach ( array( 'site', 'about' ) as $slug ) {
+		$page = get_page_by_path( $slug );
+		if ( $page ) {
+			return get_permalink( $page );
+		}
+	}
+	return home_url( '/site/' );
 }

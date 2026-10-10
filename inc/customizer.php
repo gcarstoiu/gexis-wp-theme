@@ -1,6 +1,7 @@
 <?php
 /**
- * Customizer: the default ground image and the suggested searches.
+ * Customizer: the default ground image, the owner "About me" points to, and
+ * the suggested searches.
  *
  * PHP because: a theme setting holding an image has no theme.json form, and
  * the design names the Customizer for both.
@@ -39,6 +40,28 @@ function gexis_customize_register( $wp_customize ) {
 				'description' => __( 'Shown blurred behind pages with no image of their own: author, archive, search, pages, 404, and posts without a featured image. Empty means the weave alone.', 'gexis' ),
 				'mime_type'   => 'image',
 			)
+		)
+	);
+
+	$owners = array( 0 => __( 'First administrator', 'gexis' ) );
+	foreach ( get_users( array( 'capability' => array( 'edit_posts' ), 'orderby' => 'display_name' ) ) as $user ) {
+		$owners[ $user->ID ] = $user->display_name;
+	}
+	$wp_customize->add_setting(
+		'gexis_owner',
+		array(
+			'default'           => 0,
+			'sanitize_callback' => 'absint',
+		)
+	);
+	$wp_customize->add_control(
+		'gexis_owner',
+		array(
+			'section'     => 'gexis',
+			'type'        => 'select',
+			'choices'     => $owners,
+			'label'       => __( 'Owner', 'gexis' ),
+			'description' => __( 'Whose author page "About me" opens.', 'gexis' ),
 		)
 	);
 

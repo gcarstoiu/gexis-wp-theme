@@ -7,7 +7,7 @@ Description: A block theme for gexis, a personal site in four parts — gazette,
 Requires at least: 6.6
 Tested up to: 6.8
 Requires PHP: 7.4
-Version: 1.0.0
+Version: 1.0.1
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: gexis
@@ -602,13 +602,16 @@ a.gx-row:hover { color: var(--ink); }
 .gx-prose :where(ul, ol) { padding-left: 1.2em; display: flex; flex-direction: column; gap: 8px; }
 .gx-prose strong { color: var(--ink); font-weight: 700; }
 .gx-prose :where(figure.wp-block-image, .wp-block-image) { margin-block: 14px !important; display: flex; flex-direction: column; gap: 12px; }
+/* Images keep their own shape: a wide bar screenshot must not be cropped to
+   the 16:10 the design's sample figures happen to be. An aspect ratio chosen
+   on the image block still applies (WordPress sets it inline). */
 .gx-prose .wp-block-image img {
 	width: 100%;
-	aspect-ratio: 16 / 10;
-	object-fit: cover;
+	height: auto;
 	border-radius: 22px;
-	box-shadow: inset 0 0 0 1px var(--line-strong);
+	box-shadow: 0 0 0 1px var(--line-strong);
 }
+.gx-prose .wp-block-image img[style*="aspect-ratio"] { object-fit: cover; }
 .gx-prose figcaption,
 .gx-prose .wp-element-caption { margin: 0; font-family: var(--font-mono); font-size: 13px; color: var(--ink-quiet); text-align: left; }
 .gx-prose pre,

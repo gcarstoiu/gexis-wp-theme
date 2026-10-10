@@ -3,7 +3,7 @@ Contributors: gcarstoiu
 Requires at least: 6.6
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -46,6 +46,10 @@ GNU General Public License for more details.
   images in it are generated placeholders. GPLv3 or later.
 
 == Changelog ==
+
+= 1.0.1 =
+* Images in posts keep their own shape instead of being cropped to 16:10.
+* About me in the header opens the owner's author page; About is now This site.
 
 = 1.0.0 =
 * First release.

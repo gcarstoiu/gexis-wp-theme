@@ -33,6 +33,9 @@ every place the theme departs from it, or had to choose where it was silent.
   `4.2vw`. The theme uses the prototype's, as the visual reference.
 - **The home cover title is an `<h1>`** (a `<span>` in the prototype), so the
   front page has a heading.
+- **Images in a post keep their own shape.** The handoff's figure is 16:10,
+  but cropping every body image to that cut wide screenshots (bar displays)
+  down to their middle. 16:10 is still one click away on the image block.
 - **Reading time** is words ÷ 220, rounded, never under 1 min. The handoff
   shows the figure but not the rate.
 

@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "gexis/tag-chips",
+	"title": "gexis tag chips",
+	"category": "theme",
+	"icon": "tag",
+	"description": "Chips linking to the four gexis tag archives.",
+	"textdomain": "gexis",
+	"attributes": {
+		"excludeCurrent": {
+			"type": "boolean",
+			"default": true,
+			"label": "Leave out the current tag"
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "gexis-blocks-editor",
+	"render": "file:./render.php"
+}

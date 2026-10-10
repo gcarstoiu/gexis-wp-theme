@@ -1,0 +1,16 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "gexis/author-cv",
+	"title": "Author CV",
+	"category": "theme",
+	"icon": "id",
+	"description": "The author page: head, In short, Work, On the bench, skills and facts. Data comes from the user profile.",
+	"textdomain": "gexis",
+	"attributes": {},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "gexis-blocks-editor",
+	"render": "file:./render.php"
+}

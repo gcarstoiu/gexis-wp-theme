@@ -1,0 +1,16 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "gexis/post-nav",
+	"title": "Older and newer",
+	"category": "theme",
+	"icon": "leftright",
+	"description": "The previous and next posts as rows with a thumbnail, labelled Older and Newer.",
+	"textdomain": "gexis",
+	"attributes": {},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "gexis-blocks-editor",
+	"render": "file:./render.php"
+}

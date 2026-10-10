@@ -1,0 +1,16 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "gexis/archive-months",
+	"title": "Posts by month",
+	"category": "theme",
+	"icon": "calendar-alt",
+	"description": "The current listing grouped by month, as compact rows under a label, rule and count.",
+	"textdomain": "gexis",
+	"attributes": {},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "gexis-blocks-editor",
+	"render": "file:./render.php"
+}

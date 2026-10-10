@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "gexis/tag-cards",
+	"title": "gexis tag cards",
+	"category": "theme",
+	"icon": "grid-view",
+	"description": "The four gexis tags as cards: mark lit on its letter, name, description.",
+	"textdomain": "gexis",
+	"attributes": {
+		"variant": {
+			"type": "string",
+			"default": "about",
+			"enum": [
+				"about",
+				"bench"
+			],
+			"label": "Variant",
+			"options": [
+				"About: 56px mark, count",
+				"Bench: 40px mark"
+			]
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "gexis-blocks-editor",
+	"render": "file:./render.php"
+}

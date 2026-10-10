@@ -1,0 +1,32 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "gexis/ground",
+	"title": "Ground",
+	"category": "theme",
+	"icon": "format-image",
+	"description": "The background on every page: the blurred weave, the page's image bled and blurred, a veil and a fade to the ground colour. On a gexis tag archive, the 3px accent bar.",
+	"textdomain": "gexis",
+	"attributes": {
+		"veil": {
+			"type": "string",
+			"default": "auto",
+			"enum": [
+				"auto",
+				"light",
+				"dense"
+			],
+			"label": "Veil",
+			"options": [
+				"Automatic: light on home and posts, dense elsewhere",
+				"Light",
+				"Dense"
+			]
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "gexis-blocks-editor",
+	"render": "file:./render.php"
+}

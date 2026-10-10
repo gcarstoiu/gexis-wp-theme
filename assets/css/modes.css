@@ -1,0 +1,78 @@
+/* Dark and light modes.
+
+   Dark is the design system as extracted (ds/colors.css) plus the values the
+   website added: the text accents --tx-* and the form ground --input. Light
+   was added for the website and is not part of the panel system; its values
+   are the THEMES.light object in the handoff prototype, copied exactly.
+
+   Which mode: <html data-theme> set by an inline head script from
+   localStorage['gexis-theme'], else prefers-color-scheme. Without script,
+   the media query below still follows the OS. The logo tiles (--logo-*) are
+   the same in both modes. */
+
+:root {
+	--input: rgba(8, 12, 16, 0.35);
+	--tx-g: #7ed6bc;
+	--tx-e: #e0a758;
+	--tx-i: #9fb4e8;
+	--tx-s: #f2a48f;
+	color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+	--bg-base: #e9eef2;
+	--bg-well: #d8e0e6;
+	--ink: #101a21;
+	--ink-strong: rgba(16, 26, 33, 0.90);
+	--ink-body: rgba(16, 26, 33, 0.84);
+	--ink-muted: rgba(16, 26, 33, 0.74);
+	--ink-quiet: rgba(16, 26, 33, 0.66);
+	--fill: rgba(16, 26, 33, 0.06);
+	--fill-raised: rgba(16, 26, 33, 0.08);
+	--fill-press: rgba(16, 26, 33, 0.14);
+	--fill-card: rgba(255, 255, 255, 0.55);
+	--line: rgba(16, 26, 33, 0.10);
+	--line-strong: rgba(16, 26, 33, 0.14);
+	--line-faint: rgba(16, 26, 33, 0.09);
+	--scrim: rgba(255, 255, 255, 0.72);
+	--input: rgba(255, 255, 255, 0.65);
+	--weave-a: #c4d2dc;
+	--weave-b: #d6e0e7;
+	--veil: radial-gradient(130% 105% at 20% 42%, rgba(233, 238, 242, 0.40), rgba(233, 238, 242, 0.88));
+	--veil-dense: radial-gradient(130% 105% at 20% 42%, rgba(233, 238, 242, 0.70), rgba(233, 238, 242, 0.94));
+	--tx-g: #1d7560;
+	--tx-e: #8a5a10;
+	--tx-i: #3e55a3;
+	--tx-s: #a8452c;
+	color-scheme: light;
+}
+
+@media (prefers-color-scheme: light) {
+	:root:not([data-theme]) {
+		--bg-base: #e9eef2;
+		--bg-well: #d8e0e6;
+		--ink: #101a21;
+		--ink-strong: rgba(16, 26, 33, 0.90);
+		--ink-body: rgba(16, 26, 33, 0.84);
+		--ink-muted: rgba(16, 26, 33, 0.74);
+		--ink-quiet: rgba(16, 26, 33, 0.66);
+		--fill: rgba(16, 26, 33, 0.06);
+		--fill-raised: rgba(16, 26, 33, 0.08);
+		--fill-press: rgba(16, 26, 33, 0.14);
+		--fill-card: rgba(255, 255, 255, 0.55);
+		--line: rgba(16, 26, 33, 0.10);
+		--line-strong: rgba(16, 26, 33, 0.14);
+		--line-faint: rgba(16, 26, 33, 0.09);
+		--scrim: rgba(255, 255, 255, 0.72);
+		--input: rgba(255, 255, 255, 0.65);
+		--weave-a: #c4d2dc;
+		--weave-b: #d6e0e7;
+		--veil: radial-gradient(130% 105% at 20% 42%, rgba(233, 238, 242, 0.40), rgba(233, 238, 242, 0.88));
+		--veil-dense: radial-gradient(130% 105% at 20% 42%, rgba(233, 238, 242, 0.70), rgba(233, 238, 242, 0.94));
+		--tx-g: #1d7560;
+		--tx-e: #8a5a10;
+		--tx-i: #3e55a3;
+		--tx-s: #a8452c;
+		color-scheme: light;
+	}
+}

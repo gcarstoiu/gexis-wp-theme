@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "gexis/post-meta",
+	"title": "Post meta",
+	"category": "theme",
+	"icon": "clock",
+	"description": "Mono meta line: date · read time · comments.",
+	"textdomain": "gexis",
+	"attributes": {
+		"parts": {
+			"type": "string",
+			"default": "date,time,comments",
+			"label": "Parts, in order (date, time, comments)"
+		},
+		"bare": {
+			"type": "boolean",
+			"default": false,
+			"label": "Bare number (comments only)"
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "gexis-blocks-editor",
+	"render": "file:./render.php",
+	"usesContext": [
+		"postId",
+		"postType"
+	]
+}

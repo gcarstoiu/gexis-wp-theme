@@ -1,0 +1,16 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "gexis/search-state",
+	"title": "Search state",
+	"category": "theme",
+	"icon": "search",
+	"description": "Results count with a query; no-results line and tag chips with nothing found; suggested searches with no query.",
+	"textdomain": "gexis",
+	"attributes": {},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "gexis-blocks-editor",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,16 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "gexis/theme-toggle",
+	"title": "Colour mode switch",
+	"category": "theme",
+	"icon": "admin-appearance",
+	"description": "Switches light and dark, naming the mode it switches to: Light / Dark in the header, Light mode / Dark mode in the open menu.",
+	"textdomain": "gexis",
+	"attributes": {},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "gexis-blocks-editor",
+	"render": "file:./render.php"
+}

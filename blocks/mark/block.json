@@ -1,0 +1,60 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "gexis/mark",
+	"title": "gexis mark",
+	"category": "theme",
+	"icon": "screenoptions",
+	"description": "The four-tile mark whose gap is the x. A lead letter lights one tile; Automatic lights the tag's letter on a gexis tag archive.",
+	"textdomain": "gexis",
+	"attributes": {
+		"size": {
+			"type": "number",
+			"default": 32,
+			"label": "Size (px)",
+			"min": 16,
+			"max": 240
+		},
+		"lead": {
+			"type": "string",
+			"default": "",
+			"enum": [
+				"",
+				"auto",
+				"g",
+				"e",
+				"i",
+				"s"
+			],
+			"label": "Lead letter",
+			"options": [
+				"None, all lit",
+				"Automatic, follows the tag archive",
+				"g · Gazette",
+				"e · Engine room",
+				"i · Inbox",
+				"s · Sound"
+			]
+		},
+		"wordmark": {
+			"type": "boolean",
+			"default": false,
+			"label": "Wordmark"
+		},
+		"isLink": {
+			"type": "boolean",
+			"default": false,
+			"label": "Link to home"
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"left",
+			"center",
+			"right"
+		]
+	},
+	"editorScript": "gexis-blocks-editor",
+	"render": "file:./render.php"
+}

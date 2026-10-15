@@ -15,6 +15,8 @@ defined( 'ABSPATH' ) || exit;
 <p class="is-style-gx-label"><?php echo esc_html__( 'Page', 'gexis' ); ?></p>
 <!-- /wp:paragraph -->
 
+<!-- wp:post-terms {"term":"post_tag","separator":"","className":"is-style-gx-pill"} /-->
+
 <!-- wp:post-title {"level":1,"className":"gx-head__title"} /-->
 
 <!-- wp:post-content {"className":"gx-prose gx-prose--page","layout":{"type":"default"}} /--></main>

@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 
 global $wp_query;
 if ( is_tag() ) {
-	$gexis_n = (int) get_queried_object()->count;
+	$gexis_n = gexis_tag_post_count( get_queried_object() );
 } elseif ( is_author() ) {
 	$gexis_n = (int) count_user_posts( get_queried_object_id(), 'post', true );
 } else {

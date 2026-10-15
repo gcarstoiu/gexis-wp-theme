@@ -3,7 +3,7 @@ Contributors: gcarstoiu
 Requires at least: 6.6
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -49,6 +49,9 @@ GNU General Public License for more details.
   images in it are generated placeholders. GPLv3 or later.
 
 == Changelog ==
+
+= 1.0.3 =
+* Pages take tags. A tag's archive lists its pages as Documents, a row of cards above its posts, and a tagged page shows its tag above the title. Post counts count posts only.
 
 = 1.0.2 =
 * New block, Repository document: shows a Markdown file from the Gexis Player repository (or another public GitHub repository) as a page, refreshed hourly, with links between the documents pointing at their pages on the site.

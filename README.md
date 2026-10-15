@@ -64,7 +64,7 @@ theme.json             palette, type, spacing — the design tokens as presets
 style.css              header + component styles
 templates/  parts/     thin: header part, one pattern, footer part
 patterns/              the markup of each template, translatable
-blocks/                thirteen small server-rendered gexis/* blocks
+blocks/                fourteen small server-rendered gexis/* blocks
 inc/                   tags, query roles, comments, routes, customizer, CV,
                        repository documents; inc/vendor/ holds Parsedown (MIT)
 assets/css/ds/         the design system's token files, verbatim
@@ -112,6 +112,13 @@ The site's documentation pages are one block each:
 | `hardware` | Hardware | `docs/HARDWARE.md` |
 | `manual` | User manual | `docs/manual/README.md` |
 | `release-notes` | Release notes | `CHANGELOG.md` |
+
+**Documents on a tag** (1.0.3). Pages take tags. Tag a document page with
+`sound` (or any gexis tag) and the tag's archive shows it under *Documents*,
+a row of cards above the posts (first page only; ordered by the page's Order,
+then title; the card's second line is the page's excerpt). A tagged page shows
+its tag above the title. The counts shown with a tag are of its posts only
+(`gexis_tag_post_count`), as WordPress's own count now includes its pages.
 
 See [DESIGN-NOTES.md](DESIGN-NOTES.md) for where the implementation departs
 from the design handoff, and why.

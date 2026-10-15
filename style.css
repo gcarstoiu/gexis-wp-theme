@@ -7,7 +7,7 @@ Description: A block theme for gexis, a personal site in four parts — gazette,
 Requires at least: 6.6
 Tested up to: 6.8
 Requires PHP: 7.4
-Version: 1.0.2
+Version: 1.0.3
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: gexis
@@ -816,6 +816,27 @@ a.gx-row:hover { color: var(--ink); }
 	flex-wrap: wrap;
 }
 .gx-tag-head__id { display: flex; align-items: center; gap: 36px !important; }
+/* Documents: the tag's pages, above its posts (gexis/tag-docs) */
+.gx-doc-cards { padding-bottom: 40px; }
+.gx-doc-cards__label { margin: 0 0 14px; }
+.gx-doc-cards__row { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: 14px; }
+.gx-doc-card {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 18px 20px;
+	border-radius: 18px;
+	background: var(--fill-card);
+	border: 1px solid var(--line-strong);
+	border-left: 4px solid var(--tag, var(--line-strong));
+	color: var(--ink);
+	text-decoration: none !important;
+	transition: background-color var(--dur-press) var(--ease);
+}
+.gx-doc-card:hover { color: var(--ink); }
+.gx-doc-card:active { background: var(--fill-press); }
+.gx-doc-card__name { font-size: 19px; font-weight: 700; line-height: 1.25; }
+.gx-doc-card__blurb { font-size: 14px; line-height: 1.45; color: var(--ink-muted); }
 .gx-tag-list {
 	padding-bottom: 96px;
 	display: grid !important;

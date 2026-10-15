@@ -1,0 +1,15 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "gexis/tag-docs",
+	"title": "gexis tag documents",
+	"category": "theme",
+	"icon": "media-document",
+	"description": "On a tag's archive: the pages that carry the tag, as a row of cards above its posts. Nothing when there are none.",
+	"textdomain": "gexis",
+	"supports": {
+		"html": false
+	},
+	"editorScript": "gexis-blocks-editor",
+	"render": "file:./render.php"
+}

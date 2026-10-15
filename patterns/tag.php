@@ -39,6 +39,8 @@ $gexis_item = '<!-- wp:group {"className":"gx-item","layout":{"type":"default"}}
 <!-- wp:gexis/tag-chips /--></div>
 <!-- /wp:group -->
 
+<!-- wp:gexis/tag-docs /-->
+
 <!-- wp:query {"queryId":20,"query":{"perPage":15,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":true}} -->
 <div class="wp-block-query"><!-- wp:post-template {"className":"gx-tag-list"} -->
 <?php echo $gexis_item; // phpcs:ignore ?>

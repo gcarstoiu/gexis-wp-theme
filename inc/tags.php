@@ -233,3 +233,44 @@ function gexis_current_lead() {
 	}
 	return '';
 }
+
+/**
+ * Pages take tags too (George, 2026-10-15): a page that shows a document from
+ * the repository is tagged with the part of the site it belongs to, and the
+ * tag's archive lists it under Documents (gexis/tag-docs), apart from the
+ * posts.
+ */
+function gexis_tags_on_pages() {
+	register_taxonomy_for_object_type( 'post_tag', 'page' );
+}
+add_action( 'init', 'gexis_tags_on_pages' );
+
+/**
+ * How many published posts carry a tag - not its pages. WordPress's own
+ * count includes every type the tag is registered for, which since pages
+ * take tags would count the Documents as posts.
+ *
+ * @param WP_Term|null $term Tag.
+ * @return int
+ */
+function gexis_tag_post_count( $term ) {
+	if ( ! $term instanceof WP_Term ) {
+		return 0;
+	}
+	$key   = 'gexis_tag_posts_' . $term->term_id . '_' . wp_cache_get_last_changed( 'posts' );
+	$count = wp_cache_get( $key, 'gexis' );
+	if ( false === $count ) {
+		$q     = new WP_Query(
+			array(
+				'post_type'      => 'post',
+				'post_status'    => 'publish',
+				'tag_id'         => $term->term_id,
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+			)
+		);
+		$count = (int) $q->found_posts;
+		wp_cache_set( $key, $count, 'gexis' );
+	}
+	return (int) $count;
+}

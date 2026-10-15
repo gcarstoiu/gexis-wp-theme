@@ -23,7 +23,7 @@ foreach ( array_keys( gexis_tags() ) as $gexis_letter ) {
 			),
 		)
 	);
-	$gexis_count = $gexis_bench ? '' : '<span class="gx-tag-card__count">' . esc_html( gexis_count_posts( $gexis_term ? (int) $gexis_term->count : 0 ) ) . '</span>';
+	$gexis_count = $gexis_bench ? '' : '<span class="gx-tag-card__count">' . esc_html( gexis_count_posts( gexis_tag_post_count( $gexis_term ) ) ) . '</span>';
 
 	$gexis_cards .= sprintf(
 		'<a class="gx-tag-card" href="%1$s"%2$s>%3$s<span class="gx-tag-card__text"><span class="gx-tag-card__name">%4$s</span><span class="gx-tag-card__blurb">%5$s</span>%6$s</span></a>',

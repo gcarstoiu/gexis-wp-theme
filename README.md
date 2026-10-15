@@ -64,8 +64,9 @@ theme.json             palette, type, spacing — the design tokens as presets
 style.css              header + component styles
 templates/  parts/     thin: header part, one pattern, footer part
 patterns/              the markup of each template, translatable
-blocks/                twelve small server-rendered gexis/* blocks
-inc/                   tags, query roles, comments, routes, customizer, CV
+blocks/                thirteen small server-rendered gexis/* blocks
+inc/                   tags, query roles, comments, routes, customizer, CV,
+                       repository documents; inc/vendor/ holds Parsedown (MIT)
 assets/css/ds/         the design system's token files, verbatim
 assets/fonts/          self-hosted woff2, SIL OFL
 dev/                   a throwaway Docker WordPress and a seed (not shipped)
@@ -74,9 +75,43 @@ dev/                   a throwaway Docker WordPress and a seed (not shipped)
 The `gexis/*` blocks exist because core has no equivalent: the mark, the
 blurred ground, the mono meta line (`28 Sep 2026 · 7 min · 12 comments`),
 older/newer rows with thumbnails, posts grouped by month, the post count, tag
-chips and cards, the CV, the search states, the `Newer · 1 / 4 · Older` pager
-and the colour-mode switch. They have no build step: one plain script gives
-them all a server-side preview and sidebar controls in the editor.
+chips and cards, the CV, the search states, the `Newer · 1 / 4 · Older` pager,
+the colour-mode switch, and a document from the Gexis Player repository
+(below). They have no build step: one plain script gives them all a
+server-side preview and sidebar controls in the editor.
+
+## Documents from the Gexis Player repository
+
+The *Repository document* block (`gexis/repo-doc`) shows a Markdown file
+from a public GitHub repository as a page, and keeps it current with no
+manual step. Its settings: the file (`docs/FAQ.md`), the repository (default
+`gcarstoiu/gexis-player`), the branch (default `main`), and whether to leave
+out the document's own title, since the page has one.
+
+- **Fetching.** The file comes from `raw.githubusercontent.com`, the only
+  host the block can reach; repository, branch and path are checked first
+  (a relative `.md` path, no `..`). The rendered page is cached for an hour.
+  Each good fetch is also saved, so when GitHub does not answer the last copy
+  is shown (its date in the line under it) and GitHub is asked again ten
+  minutes later. With no copy yet, a short notice links to the file on GitHub.
+- **Links.** A link to another `.md` file goes to the page on this site that
+  shows that file, if there is one (any published page holding the block with
+  that path), otherwise to the file on GitHub. Anchors are kept, and headings
+  carry GitHub's anchors, so `#section` links work. Relative images load from
+  the repository. A Mermaid diagram becomes a line linking to it on GitHub.
+- **Markdown** is converted by the bundled
+  [Parsedown](https://github.com/erusev/parsedown) 1.8.0 (MIT), GitHub tables
+  included, and filtered as post content.
+
+The site's documentation pages are one block each:
+
+| Slug | Title | File |
+|---|---|---|
+| `faq` | FAQ | `docs/FAQ.md` |
+| `install` | Installation guide | `docs/INSTALL.md` |
+| `hardware` | Hardware | `docs/HARDWARE.md` |
+| `manual` | User manual | `docs/manual/README.md` |
+| `release-notes` | Release notes | `CHANGELOG.md` |
 
 See [DESIGN-NOTES.md](DESIGN-NOTES.md) for where the implementation departs
 from the design handoff, and why.

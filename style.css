@@ -7,7 +7,7 @@ Description: A block theme for gexis, a personal site in four parts — gazette,
 Requires at least: 6.6
 Tested up to: 6.8
 Requires PHP: 7.4
-Version: 1.0.1
+Version: 1.0.2
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: gexis
@@ -920,6 +920,65 @@ body:not(.paged) .gx-tag-list > li:nth-child(-n+3) .gx-item__title a::after { bo
 .gx-page .gx-prose { gap: 22px; }
 .gx-page .gx-prose > p:first-child { max-width: 720px; }
 .gx-page .gx-prose > .gx-tag-cards { margin-top: 12px !important; }
+
+/* gexis/repo-doc: a Markdown document from the repository. The body is
+   .gx-prose one level down, so its spacing is restated for the children;
+   type, links, headings, code and quotes come from .gx-prose itself. */
+.gx-repo-doc { display: flex; flex-direction: column; gap: 40px; }
+.gx-repo-doc__body { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+.gx-repo-doc__body > * { margin: 0 !important; max-width: 100%; }
+.gx-repo-doc__body > p { text-wrap: pretty; }
+.gx-repo-doc__body > h1 { font-size: clamp(30px, 3.4vw, 40px); line-height: 1.15; font-weight: 700; letter-spacing: -0.015em; }
+.gx-repo-doc__body :where(h1, h2, h3, h4, h5, h6) { scroll-margin-top: 24px; }
+.gx-repo-doc__body ol { padding-left: 1.6em; }
+.gx-repo-doc__body :where(li) > :where(p, ul, ol) { margin: 6px 0 0; }
+.gx-repo-doc__body :where(li) > p:first-child { margin-top: 0; }
+.gx-repo-doc__body :where(td, th, h2, h3, h4, blockquote p) code {
+	font-family: var(--font-mono);
+	font-size: 0.85em;
+	padding: 0.1em 0.35em;
+	border-radius: 6px;
+	background: var(--fill);
+}
+.gx-repo-doc__body pre code { padding: 0; background: none; font-size: inherit; }
+.gx-repo-doc__body blockquote > p { margin: 0; }
+.gx-repo-doc__body blockquote > p + p { margin-top: 12px; }
+.gx-repo-doc__body img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	border-radius: 15px;
+	box-shadow: 0 0 0 1px var(--line-strong);
+}
+.gx-repo-doc__table {
+	overflow-x: auto;
+	border-radius: 15px;
+	border: 1px solid var(--line);
+	background: var(--fill-card);
+}
+.gx-repo-doc__table table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.5; }
+.gx-repo-doc__table :where(th, td) { padding: 10px 14px; vertical-align: top; text-align: left; border-top: 1px solid var(--line); }
+.gx-repo-doc__table thead th {
+	border-top: 0;
+	border-bottom: 1px solid var(--line-strong);
+	font-family: var(--font-mono);
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--ink-quiet);
+	white-space: nowrap;
+}
+.gx-repo-doc__table tbody tr:first-child :where(td, th) { border-top: 0; }
+.gx-repo-doc__table td { color: var(--ink-body); }
+/* On a phone, columns keep a readable width and the box scrolls sideways
+   rather than squeezing the last column to a word a line. */
+@media (max-width: 600px) {
+	.gx-repo-doc__table :where(th, td) { min-width: 6.5em; }
+	.gx-repo-doc__table td:last-child:not(:first-child) { min-width: 18em; }
+}
+.gx-repo-doc__diagram,
+.gx-repo-doc__notice { font-family: var(--font-mono); font-size: 15px; color: var(--ink-quiet); }
+.gx-repo-doc__meta { margin: 0; padding-top: 18px; border-top: 1px solid var(--line); }
+.gx-repo-doc__meta a { color: inherit; }
 
 /* tag cards: About (56px mark, count) and the author's bench (40px) */
 .gx-tag-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; }

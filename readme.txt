@@ -3,7 +3,7 @@ Contributors: gcarstoiu
 Requires at least: 6.6
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -42,10 +42,16 @@ GNU General Public License for more details.
 * Bricolage Grotesque, Copyright 2022 The Bricolage Grotesque Project Authors
   License: SIL Open Font License 1.1, assets/fonts/LICENSE-BricolageGrotesque.txt
   Source: https://github.com/ateliertriay/bricolage
+* Parsedown 1.8.0, Copyright 2013-2018 Emanuil Rusev
+  License: MIT, inc/vendor/LICENSE-Parsedown.txt
+  Source: https://github.com/erusev/parsedown
 * screenshot.jpg: the theme rendering its own development seed; the
   images in it are generated placeholders. GPLv3 or later.
 
 == Changelog ==
+
+= 1.0.2 =
+* New block, Repository document: shows a Markdown file from the Gexis Player repository (or another public GitHub repository) as a page, refreshed hourly, with links between the documents pointing at their pages on the site.
 
 = 1.0.1 =
 * Images in posts keep their own shape instead of being cropped to 16:10.

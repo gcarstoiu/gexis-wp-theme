@@ -26,3 +26,4 @@ require GEXIS_DIR . '/inc/comments.php';     // Comment form, avatars, toasts.
 require GEXIS_DIR . '/inc/routes.php';       // /archive/ and the empty search screen.
 require GEXIS_DIR . '/inc/customizer.php';   // Default ground image, search suggestions.
 require GEXIS_DIR . '/inc/author-meta.php';  // CV fields on the user profile.
+require GEXIS_DIR . '/inc/repo-doc.php';     // gexis/repo-doc: Markdown from GitHub, cached.

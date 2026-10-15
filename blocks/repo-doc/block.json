@@ -1,0 +1,37 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "gexis/repo-doc",
+	"title": "Repository document",
+	"category": "theme",
+	"icon": "media-document",
+	"description": "A Markdown document from a public GitHub repository, kept current: fetched hourly, links pointed at the pages that show the other documents.",
+	"textdomain": "gexis",
+	"attributes": {
+		"path": {
+			"type": "string",
+			"default": "",
+			"label": "File in the repository (e.g. docs/FAQ.md)"
+		},
+		"repo": {
+			"type": "string",
+			"default": "gcarstoiu/gexis-player",
+			"label": "Repository (owner/name)"
+		},
+		"branch": {
+			"type": "string",
+			"default": "main",
+			"label": "Branch"
+		},
+		"dropTitle": {
+			"type": "boolean",
+			"default": true,
+			"label": "Leave out the document's title (its first H1)"
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "gexis-blocks-editor",
+	"render": "file:./render.php"
+}

@@ -30,7 +30,8 @@ function gexis_m_label( $label, $href = null, $text = '' ) {
 /**
  * A row inside a post template: 72px thumbnail, title, then diamonds and date.
  *
- * @param array $opt { excerpt: one-line excerpt instead of the meta line }.
+ * @param array $opt { excerpt: one-line excerpt instead of the meta line;
+ *                     guide: a page's row - no thumbnail, title and excerpt }.
  * @return string
  */
 function gexis_m_row( $opt = array() ) {
@@ -39,6 +40,12 @@ function gexis_m_row( $opt = array() ) {
 		: '<!-- wp:group {"className":"gx-row__meta","layout":{"type":"flex","flexWrap":"nowrap"}} -->' . "\n"
 			. '<div class="wp-block-group gx-row__meta"><!-- wp:post-terms {"term":"post_tag","separator":"","className":"is-style-gx-diamonds"} /-->' . "\n\n"
 			. '<!-- wp:post-date {"format":"d M Y"} /--></div>' . "\n" . '<!-- /wp:group -->';
+	if ( ! empty( $opt['guide'] ) ) {
+		return '<!-- wp:group {"className":"gx-row gx-row--guide","layout":{"type":"default"}} -->' . "\n"
+			. '<div class="wp-block-group gx-row gx-row--guide"><!-- wp:group {"className":"gx-row__body","layout":{"type":"default"}} -->' . "\n"
+			. '<div class="wp-block-group gx-row__body"><!-- wp:post-title {"level":0,"isLink":true,"className":"gx-row__title"} /-->' . "\n\n"
+			. '<!-- wp:post-excerpt {"excerptLength":24,"className":"gx-row__excerpt"} /--></div>' . "\n" . '<!-- /wp:group --></div>' . "\n" . '<!-- /wp:group -->';
+	}
 	$title = empty( $opt['plain'] ) ? $meta : '';
 	return '<!-- wp:group {"className":"gx-row","layout":{"type":"default"}} -->' . "\n"
 		. '<div class="wp-block-group gx-row"><!-- wp:post-featured-image {"aspectRatio":"1","width":"72px","height":"72px","sizeSlug":"gexis-thumb","className":"gx-row__thumb"} /-->' . "\n\n"

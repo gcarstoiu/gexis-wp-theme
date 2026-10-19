@@ -3,7 +3,7 @@
  * Query roles for core/query blocks, and main-query sizes.
  *
  * PHP because: the home page must never show a post twice across its five
- * loops, and "Most discussed" orders by comment count over 90 days. Core's
+ * loops, and "Guides" lists the pages that show a repository document. Core's
  * Query Loop can do neither.
  *
  * A template opts in by adding a `gexis` key to the Query Loop's query:
@@ -12,7 +12,8 @@
  *   lead       1 post: the newest sticky post, else the newest post
  *   cards      the next 3
  *   latest     the next 3
- *   discussed  3 by comment count over the last 90 days, not already shown
+ *   guides     the pages showing a repository document (FAQ, manual...), by
+ *              their Order, then title; pages, so never counted as shown
  *   earlier    the next 3 by date, not already shown
  *   author     the queried author's 6 latest (author page, "Lately")
  *
@@ -63,6 +64,30 @@ function gexis_lead_post_id() {
 }
 
 /**
+ * The guides: published pages holding a gexis/repo-doc block, in the order
+ * set on each page (Page Attributes -> Order), then by title.
+ *
+ * @return int[]
+ */
+function gexis_guide_page_ids() {
+	static $ids = null;
+	if ( null !== $ids ) {
+		return $ids;
+	}
+	global $wpdb;
+	$ids = array_map(
+		'intval',
+		$wpdb->get_col( // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+			$wpdb->prepare(
+				"SELECT ID FROM {$wpdb->posts} WHERE post_status = 'publish' AND post_type = 'page' AND post_content LIKE %s ORDER BY menu_order ASC, post_title ASC",
+				'%' . $wpdb->esc_like( '<!-- wp:gexis/repo-doc' ) . '%'
+			)
+		)
+	);
+	return $ids;
+}
+
+/**
  * IDs for a role, excluding everything already shown.
  *
  * @param string $role  Role.
@@ -84,23 +109,8 @@ function gexis_role_ids( $role, $count ) {
 		$lead = gexis_lead_post_id();
 		return $lead ? array( $lead ) : array();
 	}
-	if ( 'discussed' === $role ) {
-		$recent = get_posts(
-			array_merge(
-				$base,
-				array(
-					'orderby'    => array( 'comment_count' => 'DESC', 'date' => 'DESC' ),
-					'date_query' => array( array( 'after' => '90 days ago' ) ),
-				)
-			)
-		);
-		if ( count( $recent ) < $count ) {
-			/* A quiet season: top up from all time rather than show a short column. */
-			$base['post__not_in'] = array_merge( $base['post__not_in'], $recent );
-			$base['posts_per_page'] = $count - count( $recent );
-			$recent = array_merge( $recent, get_posts( array_merge( $base, array( 'orderby' => array( 'comment_count' => 'DESC', 'date' => 'DESC' ) ) ) ) );
-		}
-		return $recent;
+	if ( 'guides' === $role ) {
+		return array_slice( gexis_guide_page_ids(), 0, $count );
 	}
 	if ( 'author' === $role ) {
 		$author = is_author() ? get_queried_object_id() : 0;
@@ -127,7 +137,7 @@ function gexis_query_loop_vars( $query, $block ) {
 	}
 	$count = max( 1, (int) ( $block->context['query']['perPage'] ?? 3 ) );
 	$ids   = gexis_role_ids( $role, $count );
-	if ( 'author' !== $role ) {
+	if ( 'author' !== $role && 'guides' !== $role ) {
 		gexis_shown( $ids );
 	}
 	$query['post__in']            = $ids ? $ids : array( 0 );

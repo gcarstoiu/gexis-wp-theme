@@ -7,7 +7,7 @@ Description: A block theme for gexis, a personal site in four parts — gazette,
 Requires at least: 6.6
 Tested up to: 6.8
 Requires PHP: 7.4
-Version: 1.0.3
+Version: 1.0.4
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: gexis
@@ -443,15 +443,18 @@ html:not([data-theme]) .gx-theme-toggle { display: none; } /* no script: nothing
 }
 .gx-row__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 /* a post with no image: the empty well in the thumbnail's place */
-.gx-row:not(:has(.wp-block-post-featured-image)):not(:has(.gx-row__thumb))::before {
+.gx-row:not(.gx-row--guide):not(:has(.wp-block-post-featured-image)):not(:has(.gx-row__thumb))::before {
 	content: "";
 	width: 72px;
 	height: 72px;
 	border-radius: 12px;
 	background: var(--bg-well);
 }
-.gx-row:not(:has(.wp-block-post-featured-image)):not(:has(.gx-row__thumb)) > .gx-row__body { grid-column: 2; }
+.gx-row:not(.gx-row--guide):not(:has(.wp-block-post-featured-image)):not(:has(.gx-row__thumb)) > .gx-row__body { grid-column: 2; }
 .gx-row__body { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+/* a guide (a page): text only, no thumbnail and no empty well */
+.gx-row.gx-row--guide { grid-template-columns: minmax(0, 1fr); padding: 14px 16px; }
+.gx-row.gx-row--guide > .gx-row__body { gap: 4px; }
 .gx-row__title,
 .gx-row .wp-block-post-title {
 	font-size: 17px;
@@ -550,6 +553,8 @@ a.gx-row:hover { color: var(--ink); }
 }
 .gx-column { display: flex; flex-direction: column; gap: 10px; }
 .gx-column > .gx-section-label { padding-bottom: 6px; }
+/* a column with no Archive link (Guides) is as tall as the others, so the rows line up */
+.gx-column > .gx-section-label { min-height: 48px; }
 
 /* ── single post ────────────────────────────────────────────────────────── */
 

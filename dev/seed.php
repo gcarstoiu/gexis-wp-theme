@@ -166,7 +166,7 @@ foreach ( $thread as $c ) {
 		$add( $r, $parent );
 	}
 }
-/* The prototype's comment counts, for Most discussed. */
+/* The prototype's comment counts (the comments' threads). */
 global $wpdb;
 foreach ( $ids as $n => $id ) {
 	if ( $n > 0 ) {

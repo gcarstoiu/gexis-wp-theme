@@ -55,9 +55,13 @@ every place the theme departs from it, or had to choose where it was silent.
 - **Thread depth is fixed at 2** (`pre_option_thread_comments_depth`), as
   designed: replies sit under the comment they answer, and Reply on a reply
   answers the same thread.
-- **Most discussed**: posts published in the last 90 days, by comment count,
-  excluding posts already on the page. If fewer than three qualify, the column
-  is topped up from all time rather than left short.
+- **Guides** (1.0.4, in place of *Most discussed*; George, 2026-10-19): the
+  home page's middle column lists the pages that show a repository document
+  (Installation guide, User manual, FAQ, Hardware, Release notes), in each
+  page's Order, then by title, up to five, as text rows - title and excerpt,
+  no thumbnail. Its label has no Archive link; the label keeps the others'
+  height, so the rows of the three columns start level. With few comments,
+  *Most discussed* was an arbitrary pick.
 - **Tag archive**: 15 posts a page. On page 1 the first three render as large
   cards and the rest as rows; later pages are rows only. One Query Loop,
   styled by position.

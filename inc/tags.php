@@ -38,7 +38,7 @@ function gexis_tags() {
 				'i' => array(
 					'slug'  => 'inbox',
 					'name'  => __( 'Inbox', 'gexis' ),
-					'blurb' => __( 'Email templates and how clients render them.', 'gexis' ),
+					'blurb' => __( 'Feedback and requests: what readers ask me to look into, fix or think about again.', 'gexis' ),
 				),
 				's' => array(
 					'slug'  => 'sound',

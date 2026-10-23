@@ -8,7 +8,7 @@ several:
 |---|---|---|---|
 | **g** | `gazette` | teal `#7ed6bc` | Articles on topics of interest |
 | **e** | `engine-room` | amber `#e0a758` | Homelab and tech tinkering |
-| **i** | `inbox` | periwinkle `#9fb4e8` | Email templates, email client styling |
+| **i** | `inbox` | periwinkle `#9fb4e8` | Feedback and requests from readers |
 | **s** | `sound` | coral `#f2a48f` | The gexis DAC player |
 
 The theme recognises those four slugs and gives each its colour, and lights its

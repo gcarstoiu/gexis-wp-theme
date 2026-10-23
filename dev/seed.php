@@ -49,7 +49,7 @@ wp_update_user( array( 'ID' => 1, 'display_name' => 'gexis', 'nickname' => 'gexi
 $tags = array(
 	'g' => array( 'Gazette', 'gazette', 'Articles on whatever is worth writing down.' ),
 	'e' => array( 'Engine room', 'engine-room', 'Homelab and tinkering. Small servers, networking, fixes.' ),
-	'i' => array( 'Inbox', 'inbox', 'Email templates and how clients render them.' ),
+	'i' => array( 'Inbox', 'inbox', 'Feedback and requests: what readers ask me to look into, fix or think about again.' ),
 	's' => array( 'Sound', 'sound', 'The gexis DAC player: builds, decisions, measurements.' ),
 );
 $term_ids = array();

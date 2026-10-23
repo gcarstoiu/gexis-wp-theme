@@ -21,6 +21,22 @@ page.
 
 ![The front page in dark mode](screenshot.jpg)
 
+## Version
+
+**1.0.5**, 24 Oct 2026. What changed lately:
+
+- **1.0.5** Inbox is for reader feedback and requests. Its default
+  description reads: *Feedback and requests: what readers ask me to look into,
+  fix or think about again.* A description set in Posts → Tags still wins.
+- **1.0.4** The home page's middle column is *Guides*: the pages that show a
+  repository document, in their page order. It replaces *Most discussed*.
+- **1.0.3** Pages take tags; a tag's archive lists its pages as *Documents*.
+- **1.0.2** New block, *Repository document*.
+- **1.0.1** Images in posts keep their own shape; *About me* in the header,
+  *About* renamed *This site*.
+
+The full list is the changelog in [readme.txt](readme.txt).
+
 ## Install
 
 Clone this repository into `wp-content/themes/gexis`, or build a zip with

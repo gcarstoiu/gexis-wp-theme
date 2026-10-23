@@ -3,7 +3,7 @@ Contributors: gcarstoiu
 Requires at least: 6.6
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -49,6 +49,9 @@ GNU General Public License for more details.
   images in it are generated placeholders. GPLv3 or later.
 
 == Changelog ==
+
+= 1.0.6 =
+* New screenshot: the current header, with About me and This site.
 
 = 1.0.5 =
 * Inbox is now for reader feedback and requests. Its default description reads: "Feedback and requests: what readers ask me to look into, fix or think about again." A description set in Posts → Tags still takes precedence.

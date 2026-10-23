@@ -23,8 +23,9 @@ page.
 
 ## Version
 
-**1.0.5**, 24 Oct 2026. What changed lately:
+**1.0.6**, 24 Oct 2026. What changed lately:
 
+- **1.0.6** New screenshot, showing the current header.
 - **1.0.5** Inbox is for reader feedback and requests. Its default
   description reads: *Feedback and requests: what readers ask me to look into,
   fix or think about again.* A description set in Posts → Tags still wins.

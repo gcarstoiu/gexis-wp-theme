@@ -5,7 +5,7 @@
 	"title": "gexis tag cards",
 	"category": "theme",
 	"icon": "grid-view",
-	"description": "The four gexis tags as cards: mark lit on its letter, name, description.",
+	"description": "The four gexis tags as cards: name, description and, depending on the variant, the mark lit on its letter and the post count.",
 	"textdomain": "gexis",
 	"attributes": {
 		"variant": {
@@ -13,12 +13,16 @@
 			"default": "about",
 			"enum": [
 				"about",
-				"bench"
+				"bench",
+				"strip",
+				"post"
 			],
 			"label": "Variant",
 			"options": [
-				"About: 56px mark, count",
-				"Bench: 40px mark"
+				"About: large cards with the mark and count",
+				"Bench: the mark, name and line",
+				"Strip: a row of four, coloured along the top",
+				"Post: only the current post's tags, with counts"
 			]
 		}
 	},
@@ -26,5 +30,8 @@
 		"html": false
 	},
 	"editorScript": "gexis-blocks-editor",
-	"render": "file:./render.php"
+	"render": "file:./render.php",
+	"usesContext": [
+		"postId"
+	]
 }

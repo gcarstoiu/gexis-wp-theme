@@ -44,6 +44,7 @@
 	--tx-e: #8a5a10;
 	--tx-i: #3e55a3;
 	--tx-s: #a8452c;
+	--gx-shadow: 0 24px 60px rgba(16, 26, 33, 0.10);
 	color-scheme: light;
 }
 
@@ -73,6 +74,7 @@
 		--tx-e: #8a5a10;
 		--tx-i: #3e55a3;
 		--tx-s: #a8452c;
+		--gx-shadow: 0 24px 60px rgba(16, 26, 33, 0.10);
 		color-scheme: light;
 	}
 }

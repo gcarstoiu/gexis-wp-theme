@@ -151,7 +151,7 @@ function gexis_query_loop_vars( $query, $block ) {
 add_filter( 'query_loop_block_query_vars', 'gexis_query_loop_vars', 10, 2 );
 
 /**
- * Main-query page sizes: a tag archive's first page is 3 cards plus 12 rows;
+ * Main-query page sizes: a tag archive shows two bento cycles (14 posts);
  * archives list by month; search lists rows.
  *
  * @param WP_Query $q Query.
@@ -161,7 +161,7 @@ function gexis_main_query_size( $q ) {
 		return;
 	}
 	if ( $q->is_tag() ) {
-		$q->set( 'posts_per_page', 15 );
+		$q->set( 'posts_per_page', 14 );
 	} elseif ( $q->is_home() || $q->is_date() || $q->is_category() || gexis_is_everything() ) {
 		$q->set( 'posts_per_page', 40 );
 		$q->set( 'ignore_sticky_posts', true );

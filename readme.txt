@@ -3,7 +3,7 @@ Contributors: gcarstoiu
 Requires at least: 6.6
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.0.6
+Stable tag: 1.1.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -49,6 +49,20 @@ GNU General Public License for more details.
   images in it are generated placeholders. GPLv3 or later.
 
 == Changelog ==
+
+= 1.1.0 =
+* New layout on every page, from the "Front page" design (George, 2026-10-24). Each page opens with one large card: the post's picture with its title on it on the home page and on posts, a head card elsewhere.
+* Home: the lead post as a wide picture, the four tags as a row of cards, then the next seven posts as a grid of picture and text tiles with the Guides beside them, and a link to the whole archive.
+* Posts: On this page (the post's sections and its comments) and the post's tags beside the body; older and newer as two picture cards; the comments as cards with the form beside them.
+* Archive: a row per month, the month's first post across the row.
+* Tag: the tag's card (its letter lit, name, description, counts), its documents, then its posts as a grid, 14 a page.
+* About me: the CV as cards; On the bench and Lately below it.
+* Guides: the document's source and sections beside it, the other guides under it.
+* Search: the field in a card, results as cards with the words searched for marked, and the results by tag beside them.
+* This site: the four tags two by two; Comments and Elsewhere side by side (insert the This site pattern again to get them).
+* 404: a card with the mark, Home, Search and the tags; the three latest posts below.
+* Footer: the wordmark, the tags with their colours, About me, This site, RSS.
+* New block: On this page (gexis/toc). New variants: tag cards as a strip or for one post; search state in parts; tag chips with counts.
 
 = 1.0.6 =
 * New screenshot: the current header, with About me and This site.

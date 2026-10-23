@@ -17,5 +17,5 @@ printf(
 	'<nav %1$s aria-label="%2$s">%3$s</nav>',
 	get_block_wrapper_attributes( array( 'class' => 'gx-tag-chips' ) ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	esc_attr__( 'Tags', 'gexis' ),
-	gexis_tag_chips_html( $gexis_exclude ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper.
+	gexis_tag_chips_html( $gexis_exclude, ! empty( $attributes['counts'] ) ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper.
 );

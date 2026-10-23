@@ -11,13 +11,15 @@
 defined( 'ABSPATH' ) || exit;
 ?>
 <!-- wp:group {"tagName":"main","className":"gx-main gx-page","layout":{"type":"default"}} -->
-<main class="wp-block-group gx-main gx-page"><!-- wp:paragraph {"className":"is-style-gx-label"} -->
+<main class="wp-block-group gx-main gx-page"><!-- wp:group {"className":"gx-head gx-page-head gx-head-card","layout":{"type":"default"}} -->
+<div class="wp-block-group gx-head gx-page-head gx-head-card"><!-- wp:paragraph {"className":"is-style-gx-label"} -->
 <p class="is-style-gx-label"><?php echo esc_html__( 'Page', 'gexis' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:post-terms {"term":"post_tag","separator":"","className":"is-style-gx-pill"} /-->
 
-<!-- wp:post-title {"level":1,"className":"gx-head__title"} /-->
+<!-- wp:post-title {"level":1,"className":"gx-head__title"} /--></div>
+<!-- /wp:group -->
 
 <!-- wp:post-content {"className":"gx-prose gx-prose--page","layout":{"type":"default"}} /--></main>
 <!-- /wp:group -->

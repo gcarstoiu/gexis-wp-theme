@@ -57,51 +57,6 @@ function gexis_count_comments( $post = null ) {
 }
 
 /**
- * A post's image at a theme size, or the empty well. The design never fakes
- * content to fill a slot; an empty well is honest about a post with no image.
- *
- * @param WP_Post $post Post.
- * @param string  $size Image size.
- * @param array   $attr Extra <img> attributes.
- * @return string HTML.
- */
-function gexis_post_image( $post, $size, $attr = array() ) {
-	if ( has_post_thumbnail( $post ) ) {
-		return get_the_post_thumbnail( $post, $size, wp_parse_args( $attr, array( 'alt' => '', 'loading' => 'lazy' ) ) );
-	}
-	return '<span class="gx-well" aria-hidden="true"></span>';
-}
-
-/**
- * A row: thumbnail, title, tag diamonds and date. The design's most used
- * list item. Rendered here for the blocks that cannot use a core Query Loop
- * (month groups, older / newer).
- *
- * @param WP_Post $post  Post.
- * @param array   $args  { label: string above the title, compact: 56px thumb }.
- * @return string HTML.
- */
-function gexis_row_html( $post, $args = array() ) {
-	$args = wp_parse_args( $args, array( 'label' => '', 'compact' => false, 'rel' => '' ) );
-	ob_start();
-	?>
-	<a class="gx-row<?php echo $args['compact'] ? ' gx-row--compact' : ''; ?>" href="<?php echo esc_url( get_permalink( $post ) ); ?>"<?php echo $args['rel'] ? ' rel="' . esc_attr( $args['rel'] ) . '"' : ''; ?>>
-		<span class="gx-row__thumb"><?php echo gexis_post_image( $post, 'gexis-thumb', array( 'sizes' => '72px' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-		<span class="gx-row__body">
-			<?php if ( $args['label'] ) : ?>
-				<span class="gx-label"><?php echo esc_html( $args['label'] ); ?></span>
-			<?php endif; ?>
-			<span class="gx-row__title"><?php echo esc_html( get_the_title( $post ) ); ?></span>
-			<?php if ( ! $args['label'] ) : ?>
-				<span class="gx-row__meta"><?php echo gexis_diamonds_html( $post ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span class="gx-row__date"><?php echo esc_html( gexis_date( $post ) ); ?></span></span>
-			<?php endif; ?>
-		</span>
-	</a>
-	<?php
-	return ob_get_clean();
-}
-
-/**
  * Section label with its rule, and optional trailing HTML.
  *
  * @param string $label Label.

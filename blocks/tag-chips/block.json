@@ -12,6 +12,11 @@
 			"type": "boolean",
 			"default": true,
 			"label": "Leave out the current tag"
+		},
+		"counts": {
+			"type": "boolean",
+			"default": false,
+			"label": "Show post counts"
 		}
 	},
 	"supports": {

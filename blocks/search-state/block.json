@@ -5,9 +5,27 @@
 	"title": "Search state",
 	"category": "theme",
 	"icon": "search",
-	"description": "Results count with a query; no-results line and tag chips with nothing found; suggested searches with no query.",
+	"description": "The parts of the search screen that depend on the query: suggested searches or the no-results line, the results count, and the results by tag.",
 	"textdomain": "gexis",
-	"attributes": {},
+	"attributes": {
+		"part": {
+			"type": "string",
+			"default": "all",
+			"enum": [
+				"all",
+				"head",
+				"count",
+				"tags"
+			],
+			"label": "Part",
+			"options": [
+				"Everything, in one place",
+				"Suggestions or the no-results line",
+				"The results count",
+				"The results by tag"
+			]
+		}
+	},
 	"supports": {
 		"html": false
 	},

@@ -5,7 +5,7 @@
 	"title": "Older and newer",
 	"category": "theme",
 	"icon": "leftright",
-	"description": "The previous and next posts as rows with a thumbnail, labelled Older and Newer.",
+	"description": "The previous and next posts as two cards, the picture behind the title, labelled Older and Newer.",
 	"textdomain": "gexis",
 	"attributes": {},
 	"supports": {

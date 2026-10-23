@@ -3,7 +3,7 @@
  * Title: Not found
  * Slug: gexis/404
  * Inserter: no
- * Description: The master mark, 404, Home and Search, and the three latest posts.
+ * Description: A card with the mark, 404, Home and Search and the four tags; then the three latest posts.
  *
  * @package gexis
  */
@@ -11,7 +11,8 @@
 defined( 'ABSPATH' ) || exit;
 ?>
 <!-- wp:group {"tagName":"main","className":"gx-main gx-404","layout":{"type":"default"}} -->
-<main class="wp-block-group gx-main gx-404"><!-- wp:gexis/mark {"size":96,"align":"center"} /-->
+<main class="wp-block-group gx-main gx-404"><!-- wp:group {"className":"gx-404__card gx-head-card","layout":{"type":"default"}} -->
+<div class="wp-block-group gx-404__card gx-head-card"><!-- wp:gexis/mark {"size":96,"align":"center"} /-->
 
 <!-- wp:paragraph {"className":"gx-404__code"} -->
 <p class="gx-404__code">404</p>
@@ -35,9 +36,12 @@ defined( 'ABSPATH' ) || exit;
 <!-- /wp:button --></div>
 <!-- /wp:buttons -->
 
+<!-- wp:gexis/tag-chips {"excludeCurrent":false} /--></div>
+<!-- /wp:group -->
+
 <!-- wp:group {"className":"gx-404__latest","layout":{"type":"default"}} -->
 <div class="wp-block-group gx-404__latest"><?php echo gexis_m_label( __( 'Latest', 'gexis' ) ); // phpcs:ignore ?>
 
-<?php echo gexis_m_query( array( 'perPage' => 3 ), gexis_m_row( array( 'plain' => true ) ), 'gx-rows gx-rows--grid', 50 ); // phpcs:ignore ?></div>
+<?php echo gexis_m_bento( 'trio', array( 'perPage' => 3 ), 50 ); // phpcs:ignore ?></div>
 <!-- /wp:group --></main>
 <!-- /wp:group -->

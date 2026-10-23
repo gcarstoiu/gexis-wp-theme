@@ -4,7 +4,7 @@
  * Slug: gexis/this-site
  * Categories: gexis, about
  * Post Types: page
- * Description: An intro line, the four gexis tag cards with their counts, and two short sections. Insert it on the This site page (slug `site`).
+ * Description: An intro line, the four gexis tag cards with their counts, and two short sections side by side. Insert it on the This site page (slug `site`).
  *
  * @package gexis
  */
@@ -17,18 +17,24 @@ defined( 'ABSPATH' ) || exit;
 
 <!-- wp:gexis/tag-cards /-->
 
-<!-- wp:heading -->
+<!-- wp:group {"className":"gx-panels","layout":{"type":"default"}} -->
+<div class="wp-block-group gx-panels"><!-- wp:group {"className":"gx-panel","layout":{"type":"default"}} -->
+<div class="wp-block-group gx-panel"><!-- wp:heading -->
 <h2 class="wp-block-heading"><?php echo esc_html__( 'Comments', 'gexis' ); ?></h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
 <p><?php echo esc_html__( 'Comments are open on every post. The first comment from a new address is held for approval; after that, comments appear straight away.', 'gexis' ); ?></p>
-<!-- /wp:paragraph -->
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
 
-<!-- wp:heading -->
+<!-- wp:group {"className":"gx-panel","layout":{"type":"default"}} -->
+<div class="wp-block-group gx-panel"><!-- wp:heading -->
 <h2 class="wp-block-heading"><?php echo esc_html__( 'Elsewhere', 'gexis' ); ?></h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
 <p><?php echo esc_html__( 'An RSS feed covers everything; each tag has its own feed at the same address with the tag name appended.', 'gexis' ); ?></p>
-<!-- /wp:paragraph -->
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->

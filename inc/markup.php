@@ -55,22 +55,10 @@ function gexis_m_row( $opt = array() ) {
 }
 
 /**
- * A large card: 4:3 image, tag labels, title.
- *
- * @return string
- */
-function gexis_m_card() {
-	return '<!-- wp:group {"className":"gx-card","layout":{"type":"default"}} -->' . "\n"
-		. '<div class="wp-block-group gx-card"><!-- wp:post-featured-image {"aspectRatio":"4/3","sizeSlug":"gexis-wide","className":"gx-card__image"} /-->' . "\n\n"
-		. '<!-- wp:post-terms {"term":"post_tag","separator":"","className":"is-style-gx-tags"} /-->' . "\n\n"
-		. '<!-- wp:post-title {"level":3,"isLink":true,"className":"gx-card__title"} /--></div>' . "\n" . '<!-- /wp:group -->';
-}
-
-/**
- * A Query Loop of rows or cards.
+ * A Query Loop of rows, tiles or cards.
  *
  * @param array  $query  Query attributes (merged over defaults).
- * @param string $inner  Item markup (gexis_m_row() or gexis_m_card()).
+ * @param string $inner  Item markup (gexis_m_row(), gexis_m_tile(), ...).
  * @param string $class  Class on the post template.
  * @param int    $id     queryId.
  * @return string
@@ -93,4 +81,76 @@ function gexis_m_query( $query, $inner, $class, $id ) {
 		. '<div class="wp-block-query"><!-- wp:post-template {"className":"' . esc_attr( $class ) . '"} -->' . "\n"
 		. $inner . "\n"
 		. '<!-- /wp:post-template --></div>' . "\n" . '<!-- /wp:query -->';
+}
+
+/**
+ * A tile in a bento grid (inc/bento.php): image, tag labels, title, date and
+ * read time. One markup for every cell; the grid gives each cell its size and
+ * look (picture with the text over it, picture with the text under it, or a
+ * text card), and a post with no image always becomes a text card.
+ *
+ * @return string
+ */
+function gexis_m_tile() {
+	return '<!-- wp:group {"className":"gx-tile","layout":{"type":"default"}} -->' . "\n"
+		. '<div class="wp-block-group gx-tile"><!-- wp:post-featured-image {"sizeSlug":"gexis-wide","className":"gx-tile__image"} /-->' . "\n\n"
+		. '<!-- wp:group {"className":"gx-tile__text","layout":{"type":"default"}} -->' . "\n"
+		. '<div class="wp-block-group gx-tile__text"><!-- wp:post-terms {"term":"post_tag","separator":"","className":"is-style-gx-tags"} /-->' . "\n\n"
+		. '<!-- wp:post-title {"level":3,"isLink":true,"className":"gx-tile__title"} /-->' . "\n\n"
+		. '<!-- wp:gexis/post-meta {"parts":"date,time","className":"gx-tile__meta"} /--></div>' . "\n" . '<!-- /wp:group --></div>' . "\n" . '<!-- /wp:group -->';
+}
+
+/**
+ * The picture header: the post's image filling a wide card, its tags, title
+ * and meta over it. Without an image it is a plain card.
+ *
+ * @param array $opt { post: true on a single post (h1, no link, the byline
+ *                     in place of the excerpt) }.
+ * @return string
+ */
+function gexis_m_hero( $opt = array() ) {
+	$post  = ! empty( $opt['post'] );
+	$title = $post
+		? '<!-- wp:post-title {"level":1,"className":"gx-hero__title"} /-->'
+		: '<!-- wp:post-title {"level":1,"isLink":true,"className":"gx-hero__title"} /-->';
+	$foot  = $post
+		? '<!-- wp:group {"className":"gx-byline","layout":{"type":"flex","flexWrap":"nowrap"}} -->' . "\n"
+			. '<div class="wp-block-group gx-byline"><!-- wp:avatar {"size":44,"isLink":true} /-->' . "\n\n"
+			. '<!-- wp:group {"className":"gx-byline__text","layout":{"type":"default"}} -->' . "\n"
+			. '<div class="wp-block-group gx-byline__text"><!-- wp:post-author-name {"isLink":true} /-->' . "\n\n"
+			. '<!-- wp:gexis/post-meta /--></div>' . "\n" . '<!-- /wp:group --></div>' . "\n" . '<!-- /wp:group -->'
+		: '<!-- wp:post-excerpt {"excerptLength":36,"className":"gx-hero__excerpt"} /-->' . "\n\n"
+			. '<!-- wp:gexis/post-meta {"className":"gx-hero__meta"} /-->';
+	return '<!-- wp:group {"className":"gx-hero' . ( $post ? ' gx-hero--post' : '' ) . '","layout":{"type":"default"}} -->' . "\n"
+		. '<div class="wp-block-group gx-hero' . ( $post ? ' gx-hero--post' : '' ) . '"><!-- wp:post-featured-image {"sizeSlug":"full","className":"gx-hero__image"} /-->' . "\n\n"
+		. '<!-- wp:group {"className":"gx-hero__text","layout":{"type":"default"}} -->' . "\n"
+		. '<div class="wp-block-group gx-hero__text"><!-- wp:post-terms {"term":"post_tag","separator":"","className":"is-style-gx-pill"} /-->' . "\n\n"
+		. $title . "\n\n" . $foot . '</div>' . "\n" . '<!-- /wp:group --></div>' . "\n" . '<!-- /wp:group -->';
+}
+
+/**
+ * A search result: picture, tag labels, title, a line of the post, meta.
+ *
+ * @return string
+ */
+function gexis_m_result() {
+	return '<!-- wp:group {"className":"gx-result","layout":{"type":"default"}} -->' . "\n"
+		. '<div class="wp-block-group gx-result"><!-- wp:post-featured-image {"sizeSlug":"gexis-wide","className":"gx-result__image"} /-->' . "\n\n"
+		. '<!-- wp:group {"className":"gx-result__body","layout":{"type":"default"}} -->' . "\n"
+		. '<div class="wp-block-group gx-result__body"><!-- wp:post-terms {"term":"post_tag","separator":"","className":"is-style-gx-tags"} /-->' . "\n\n"
+		. '<!-- wp:post-title {"level":2,"isLink":true,"className":"gx-result__title"} /-->' . "\n\n"
+		. '<!-- wp:post-excerpt {"excerptLength":28,"className":"gx-result__excerpt"} /-->' . "\n\n"
+		. '<!-- wp:gexis/post-meta {"className":"gx-result__meta"} /--></div>' . "\n" . '<!-- /wp:group --></div>' . "\n" . '<!-- /wp:group -->';
+}
+
+/**
+ * A Query Loop whose items are tiles laid out by a bento cycle.
+ *
+ * @param string $cycle Cycle name (gexis_bento_cycles()).
+ * @param array  $query Query attributes.
+ * @param int    $id    queryId.
+ * @return string
+ */
+function gexis_m_bento( $cycle, $query, $id ) {
+	return gexis_m_query( $query, gexis_m_tile(), 'gx-bento-cells gx-cycle-' . $cycle, $id );
 }

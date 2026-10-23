@@ -44,9 +44,41 @@ if ( $gexis_doc['saved'] ) {
 }
 $gexis_meta[] = '<a href="' . esc_url( $gexis_blob ) . '">' . esc_html__( 'view on GitHub', 'gexis' ) . '</a>';
 
+/* Its sections, for the list beside it: the level-2 headings, which carry
+   GitHub's anchors (inc/repo-doc.php). */
+$gexis_toc = '';
+if ( $gexis_doc['ok'] && preg_match_all( '#<h2 id="([^"]+)">(.*?)</h2>#s', $gexis_doc['html'], $gexis_heads, PREG_SET_ORDER ) && count( $gexis_heads ) > 1 ) {
+	foreach ( $gexis_heads as $gexis_head ) {
+		$gexis_toc .= sprintf( '<a class="gx-toc__link" href="#%1$s">%2$s</a>', esc_attr( $gexis_head[1] ), esc_html( wp_strip_all_tags( $gexis_head[2] ) ) );
+	}
+	$gexis_toc = sprintf( '<nav class="gx-toc" aria-label="%1$s"><span class="gx-label">%1$s</span>%2$s</nav>', esc_attr__( 'Sections', 'gexis' ), $gexis_toc );
+}
+
+/* The other guides, as cards under the document. */
+$gexis_more = '';
+$gexis_here = get_the_ID();
+foreach ( gexis_guide_page_ids() as $gexis_page ) {
+	if ( $gexis_page === $gexis_here ) {
+		continue;
+	}
+	$gexis_blurb = has_excerpt( $gexis_page ) ? get_the_excerpt( $gexis_page ) : '';
+	$gexis_more .= sprintf(
+		'<a class="gx-doc-card" href="%1$s"><span class="gx-doc-card__name">%2$s</span>%3$s</a>',
+		esc_url( get_permalink( $gexis_page ) ),
+		esc_html( get_the_title( $gexis_page ) ),
+		'' !== $gexis_blurb ? '<span class="gx-doc-card__blurb">' . esc_html( $gexis_blurb ) . '</span>' : ''
+	);
+}
+if ( '' !== $gexis_more ) {
+	$gexis_more = '<section class="gx-doc-cards gx-repo-doc__more">' . gexis_section_label_html( __( 'More guides', 'gexis' ) ) . '<div class="gx-doc-cards__row">' . $gexis_more . '</div></section>';
+}
+
 printf(
-	'<div %1$s>%2$s<p class="gx-meta gx-repo-doc__meta">%3$s</p></div>',
+	'<div %1$s><div class="gx-repo-doc__cols%2$s"><aside class="gx-repo-doc__aside"><p class="gx-meta gx-repo-doc__meta">%3$s</p>%4$s</aside>%5$s</div>%6$s</div>',
 	get_block_wrapper_attributes( array( 'class' => 'gx-repo-doc' ) ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	'' !== $gexis_toc ? ' has-toc' : '',
+	implode( '<br>', $gexis_meta ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped above.
+	$gexis_toc, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped above.
 	$gexis_body, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- filtered by wp_kses_post in gexis_repo_doc_html().
-	implode( ' · ', $gexis_meta ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped above.
+	$gexis_more // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped above.
 );

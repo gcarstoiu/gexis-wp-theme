@@ -1,7 +1,8 @@
 <?php
 /**
- * gexis/author-cv — the CV-style author page: head, then a main column (In
- * short, Work, On the bench) and an aside (skill groups, Also). Every field
+ * gexis/author-cv — the CV-style author page: the head card, then a main
+ * column (In short, Work) and an aside (skill groups, Also), all cards, and On
+ * the bench, the four tags, under them. Every field
  * comes from the user profile (inc/author-meta.php); a section with nothing
  * in it is left out rather than shown empty.
  *
@@ -32,7 +33,7 @@ $gexis_meta[] = esc_html( gexis_count_posts( $gexis_n ) );
 ob_start();
 ?>
 <header class="gx-cv__head">
-	<?php echo gexis_avatar_html( $gexis_user->ID, $gexis_user->display_name, 120 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+	<?php echo gexis_avatar_html( $gexis_user->ID, $gexis_user->display_name, 160 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	<div class="gx-cv__intro">
 		<span class="gx-cv__who"><span class="gx-cv__name"><?php echo esc_html( $gexis_user->display_name ); ?></span><span class="gx-cv__where"><?php echo implode( ' · ', $gexis_meta ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span></span>
 		<?php if ( $gexis_cv['lede'] ) : ?>
@@ -59,15 +60,15 @@ ob_start();
 <div class="gx-cv__cols">
 	<div class="gx-cv__main">
 		<?php if ( $gexis_cv['summary'] ) : ?>
-			<section class="gx-cv__section">
-				<?php echo gexis_section_label_html( __( 'In short', 'gexis' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<section class="gx-cv__section gx-cv__card">
+				<span class="gx-label"><?php esc_html_e( 'In short', 'gexis' ); ?></span>
 				<p class="gx-cv__summary"><?php echo esc_html( $gexis_cv['summary'] ); ?></p>
 			</section>
 		<?php endif; ?>
 
 		<?php if ( $gexis_cv['jobs'] ) : ?>
-			<section class="gx-cv__section gx-cv__section--work">
-				<?php echo gexis_section_label_html( __( 'Work', 'gexis' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<section class="gx-cv__section gx-cv__section--work gx-cv__card">
+				<span class="gx-label"><?php esc_html_e( 'Work', 'gexis' ); ?></span>
 				<?php foreach ( $gexis_cv['jobs'] as $gexis_job ) : ?>
 					<div class="gx-job">
 						<span class="gx-job__years"><?php echo esc_html( $gexis_job['years'] ); ?></span>
@@ -82,27 +83,27 @@ ob_start();
 			</section>
 		<?php endif; ?>
 
-		<section class="gx-cv__section">
-			<?php echo gexis_section_label_html( __( 'On the bench', 'gexis' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-			<?php echo render_block( array( 'blockName' => 'gexis/tag-cards', 'attrs' => array( 'variant' => 'bench' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-		</section>
 	</div>
 
 	<?php if ( $gexis_cv['skills'] || $gexis_cv['facts'] ) : ?>
 		<aside class="gx-cv__aside">
-			<?php foreach ( $gexis_cv['skills'] as $gexis_group ) : ?>
-				<section class="gx-cv__section">
-					<?php echo gexis_section_label_html( $gexis_group['label'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-					<div class="gx-skills">
-						<?php foreach ( $gexis_group['items'] as $gexis_item ) : ?>
-							<span class="gx-skill"><?php echo esc_html( $gexis_item ); ?></span>
-						<?php endforeach; ?>
-					</div>
-				</section>
-			<?php endforeach; ?>
+			<?php if ( $gexis_cv['skills'] ) : ?>
+				<div class="gx-cv__card gx-cv__card--skills">
+					<?php foreach ( $gexis_cv['skills'] as $gexis_group ) : ?>
+						<section class="gx-cv__section">
+							<span class="gx-label"><?php echo esc_html( $gexis_group['label'] ); ?></span>
+							<div class="gx-skills">
+								<?php foreach ( $gexis_group['items'] as $gexis_item ) : ?>
+									<span class="gx-skill"><?php echo esc_html( $gexis_item ); ?></span>
+								<?php endforeach; ?>
+							</div>
+						</section>
+					<?php endforeach; ?>
+				</div>
+			<?php endif; ?>
 			<?php if ( $gexis_cv['facts'] ) : ?>
-				<section class="gx-cv__section gx-cv__section--facts">
-					<?php echo gexis_section_label_html( __( 'Also', 'gexis' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<section class="gx-cv__section gx-cv__section--facts gx-cv__card">
+					<span class="gx-label"><?php esc_html_e( 'Also', 'gexis' ); ?></span>
 					<?php foreach ( $gexis_cv['facts'] as $gexis_fact ) : ?>
 						<div class="gx-fact"><span class="gx-fact__k"><?php echo esc_html( $gexis_fact['label'] ); ?></span><span class="gx-fact__v"><?php echo esc_html( $gexis_fact['value'] ); ?></span></div>
 					<?php endforeach; ?>
@@ -111,6 +112,11 @@ ob_start();
 		</aside>
 	<?php endif; ?>
 </div>
+
+<section class="gx-cv__bench">
+	<?php echo gexis_section_label_html( __( 'On the bench', 'gexis' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+	<?php echo render_block( array( 'blockName' => 'gexis/tag-cards', 'attrs' => array( 'variant' => 'strip' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+</section>
 <?php
 $gexis_html = ob_get_clean();
 

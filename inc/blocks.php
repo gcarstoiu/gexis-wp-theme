@@ -175,3 +175,133 @@ function gexis_nav_link_current( $html, $parsed ) {
 	return $p->get_updated_html();
 }
 add_filter( 'render_block_core/navigation-link', 'gexis_nav_link_current', 10, 2 );
+
+/**
+ * A post's sections: its level-2 headings, each with the id it is given on
+ * the page. Read from the stored content, where a heading block keeps its
+ * own HTML, so the list matches what gexis_heading_anchors() renders.
+ *
+ * @param WP_Post $post Post.
+ * @return array<int, array{id: string, text: string}>
+ */
+function gexis_post_sections( $post ) {
+	$out = array();
+	if ( ! preg_match_all( '#<h2\b([^>]*)>(.*?)</h2>#is', $post->post_content, $m, PREG_SET_ORDER ) ) {
+		return $out;
+	}
+	$seen = array();
+	foreach ( $m as $h ) {
+		$text = trim( wp_strip_all_tags( $h[2] ) );
+		if ( '' === $text ) {
+			continue;
+		}
+		$out[] = array(
+			'id'   => gexis_heading_id( $h[1], $text, $seen ),
+			'text' => $text,
+		);
+	}
+	return $out;
+}
+
+/**
+ * The id of a heading: its own, or one made from its text, unique on the page.
+ *
+ * @param string $attrs The heading tag's attributes.
+ * @param string $text  Its text.
+ * @param array  $seen  Ids used so far (by reference).
+ * @return string
+ */
+function gexis_heading_id( $attrs, $text, &$seen ) {
+	if ( preg_match( '/\bid="([^"]+)"/', $attrs, $id ) ) {
+		$seen[ $id[1] ] = true;
+		return $id[1];
+	}
+	$base = sanitize_title( $text );
+	$base = '' === $base ? 'section' : $base;
+	$slug = $base;
+	for ( $n = 2; isset( $seen[ $slug ] ); $n++ ) {
+		$slug = $base . '-' . $n;
+	}
+	$seen[ $slug ] = true;
+	return $slug;
+}
+
+/**
+ * Give a post's level-2 headings the ids "On this page" links to.
+ *
+ * @param string $html Rendered content.
+ * @return string
+ */
+function gexis_heading_anchors( $html ) {
+	if ( ! is_singular( 'post' ) || get_the_ID() !== get_queried_object_id() ) {
+		return $html;
+	}
+	$seen = array();
+	return preg_replace_callback(
+		'#<h2\b([^>]*)>(.*?)</h2>#is',
+		static function ( $h ) use ( &$seen ) {
+			$text = trim( wp_strip_all_tags( $h[2] ) );
+			if ( '' === $text || preg_match( '/\bid="/', $h[1] ) ) {
+				if ( preg_match( '/\bid="([^"]+)"/', $h[1], $id ) ) {
+					$seen[ $id[1] ] = true;
+				}
+				return $h[0];
+			}
+			return '<h2 id="' . esc_attr( gexis_heading_id( '', $text, $seen ) ) . '"' . $h[1] . '>' . $h[2] . '</h2>';
+		},
+		$html
+	);
+}
+add_filter( 'the_content', 'gexis_heading_anchors', 20 );
+
+/**
+ * A gexis tag with no description of its own shows the theme's line for it.
+ *
+ * @param string $html Rendered core/term-description.
+ * @return string
+ */
+function gexis_term_description_fallback( $html ) {
+	if ( '' !== trim( wp_strip_all_tags( $html ) ) || ! is_tag() ) {
+		return $html;
+	}
+	$letter = gexis_current_lead();
+	if ( '' === $letter ) {
+		return $html;
+	}
+	return '<div class="wp-block-term-description gx-tag-head__blurb"><p>' . esc_html( gexis_tag_blurb( $letter ) ) . '</p></div>';
+}
+add_filter( 'render_block_core/term-description', 'gexis_term_description_fallback' );
+
+/**
+ * On search results, mark the words searched for in titles and excerpts.
+ *
+ * @param string   $html   Rendered block.
+ * @param array    $parsed Parsed block.
+ * @param WP_Block $block  Block instance.
+ * @return string
+ */
+function gexis_search_marks( $html, $parsed, $block ) {
+	global $wp_query;
+	$id = (int) ( $block->context['postId'] ?? 0 );
+	if ( ! is_search() || ! $id || ! in_array( $id, array_map( 'intval', wp_list_pluck( $wp_query->posts, 'ID' ) ), true ) ) {
+		return $html;
+	}
+	$words = array_filter( array_map( 'trim', preg_split( '/\s+/', get_search_query( false ) ) ), static function ( $w ) {
+		return mb_strlen( $w ) > 1;
+	} );
+	if ( ! $words ) {
+		return $html;
+	}
+	$re = '/(' . implode( '|', array_map( static function ( $w ) {
+		return preg_quote( esc_html( $w ), '/' );
+	}, $words ) ) . ')/iu';
+	return preg_replace_callback(
+		'/>([^<]+)</',
+		static function ( $t ) use ( $re ) {
+			return '>' . preg_replace( $re, '<mark>$1</mark>', $t[1] ) . '<';
+		},
+		$html
+	);
+}
+add_filter( 'render_block_core/post-title', 'gexis_search_marks', 10, 3 );
+add_filter( 'render_block_core/post-excerpt', 'gexis_search_marks', 10, 3 );

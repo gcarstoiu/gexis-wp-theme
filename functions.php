@@ -22,6 +22,7 @@ require GEXIS_DIR . '/inc/markup.php';       // Shared block markup for the patt
 require GEXIS_DIR . '/inc/setup.php';        // Supports, image sizes, styles, head script.
 require GEXIS_DIR . '/inc/blocks.php';       // gexis/* blocks and filters on core blocks.
 require GEXIS_DIR . '/inc/queries.php';      // Home de-duplication and query roles.
+require GEXIS_DIR . '/inc/bento.php';        // Bento grids: the size and look of each tile.
 require GEXIS_DIR . '/inc/comments.php';     // Comment form, avatars, toasts.
 require GEXIS_DIR . '/inc/routes.php';       // /archive/ and the empty search screen.
 require GEXIS_DIR . '/inc/customizer.php';   // Default ground image, search suggestions.

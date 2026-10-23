@@ -12,15 +12,15 @@ defined( 'ABSPATH' ) || exit;
 ?>
 <!-- wp:group {"tagName":"footer","className":"gx-footer","layout":{"type":"default"}} -->
 <footer class="wp-block-group gx-footer"><!-- wp:group {"className":"gx-footer__inner","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
-<div class="wp-block-group gx-footer__inner"><!-- wp:gexis/mark {"size":20,"lead":"auto","isLink":true} /-->
+<div class="wp-block-group gx-footer__inner"><!-- wp:gexis/mark {"size":32,"lead":"auto","wordmark":true,"isLink":true} /-->
 
 <!-- wp:paragraph {"className":"gx-footer__links"} -->
 <p class="gx-footer__links"><?php
 foreach ( array_keys( gexis_tags() ) as $gexis_letter ) {
-	printf( '<a href="%1$s">%2$s</a>', esc_url( gexis_tag_url( $gexis_letter ) ), esc_html( gexis_tag_name( $gexis_letter ) ) );
+	printf( '<a class="gx-footer__tag" href="%1$s">%2$s%3$s</a>', esc_url( gexis_tag_url( $gexis_letter ) ), gexis_diamond( $gexis_letter ), esc_html( gexis_tag_name( $gexis_letter ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 printf(
-	'<a href="%1$s">%2$s</a><a href="%3$s">%4$s</a><a href="%5$s">%6$s</a>',
+	'<span class="gx-footer__rule" aria-hidden="true"></span><a href="%1$s">%2$s</a><a href="%3$s">%4$s</a><a href="%5$s">%6$s</a>',
 	esc_url( gexis_owner_url() ),
 	esc_html__( 'About me', 'gexis' ),
 	esc_url( gexis_site_page_url() ),

@@ -181,41 +181,25 @@ function gexis_diamond( $letter ) {
 }
 
 /**
- * A post's tags as diamonds only, for rows.
- *
- * @param int|WP_Post|null $post Post.
- * @return string HTML.
- */
-function gexis_diamonds_html( $post = null ) {
-	$tags = gexis_post_tags( $post );
-	if ( ! $tags ) {
-		return '';
-	}
-	$out = '<span class="gx-diamonds">';
-	foreach ( $tags as $tag ) {
-		$out .= gexis_diamond( $tag['letter'] );
-	}
-	return $out . '</span>';
-}
-
-/**
  * Chips linking to the gexis tag archives: neutral ink, accent diamond.
  *
  * @param string[] $exclude Letters to leave out.
+ * @param bool     $counts  Add each tag's post count.
  * @return string HTML.
  */
-function gexis_tag_chips_html( $exclude = array() ) {
+function gexis_tag_chips_html( $exclude = array(), $counts = false ) {
 	$out = '<span class="gx-chips">';
 	foreach ( array_keys( gexis_tags() ) as $letter ) {
 		if ( in_array( $letter, $exclude, true ) ) {
 			continue;
 		}
 		$out .= sprintf(
-			'<a class="gx-chip" href="%1$s"%2$s>%3$s%4$s</a>',
+			'<a class="gx-chip" href="%1$s"%2$s>%3$s%4$s%5$s</a>',
 			esc_url( gexis_tag_url( $letter ) ),
 			gexis_tag_style_attr( $letter ),
 			gexis_diamond( $letter ),
-			esc_html( gexis_tag_name( $letter ) )
+			esc_html( gexis_tag_name( $letter ) ),
+			$counts ? '<span class="gx-chip__count">' . esc_html( number_format_i18n( gexis_tag_post_count( gexis_tag_term( $letter ) ) ) ) . '</span>' : ''
 		);
 	}
 	return $out . '</span>';

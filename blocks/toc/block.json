@@ -1,0 +1,17 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "gexis/toc",
+	"title": "On this page",
+	"category": "theme",
+	"icon": "list-view",
+	"description": "The post's section headings as links, and its comments. Shown when the post has at least two sections.",
+	"textdomain": "gexis",
+	"attributes": {},
+	"usesContext": [ "postId" ],
+	"supports": {
+		"html": false
+	},
+	"editorScript": "gexis-blocks-editor",
+	"render": "file:./render.php"
+}

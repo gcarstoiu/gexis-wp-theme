@@ -23,8 +23,14 @@ page.
 
 ## Version
 
-**1.0.6**, 24 Oct 2026. What changed lately:
+**1.1.0**, 24 Oct 2026. What changed lately:
 
+- **1.1.0** A new layout on every page: each opens with one large card (the
+  post's picture with its title on it on the home page and on posts), and
+  lists are cards on a grid. Posts get *On this page*; search marks the words
+  searched for and counts the results by tag; the archive has a row per month.
+  On an existing *This site* page, insert the pattern again to get the new
+  side-by-side sections.
 - **1.0.6** New screenshot, showing the current header.
 - **1.0.5** Inbox is for reader feedback and requests. Its default
   description reads: *Feedback and requests: what readers ask me to look into,
@@ -51,7 +57,7 @@ Requires WordPress 6.6 and PHP 7.4 or later.
 1. **Tags.** Create the tags `gazette`, `engine-room`, `inbox` and `sound`
    (Posts → Tags). Their descriptions appear on the tag cards; if one is empty a
    default line is used.
-2. **Featured images** drive the look: the cover, the cards, the rows, and the
+2. **Featured images** drive the look: the picture headers, the tiles, and the
    blurred ground behind each page all come from them.
 3. **About me** in the header opens the owner's author page, which is a CV.
    Fill in *Author page (gexis)* at the bottom of your user profile:
@@ -81,8 +87,8 @@ theme.json             palette, type, spacing — the design tokens as presets
 style.css              header + component styles
 templates/  parts/     thin: header part, one pattern, footer part
 patterns/              the markup of each template, translatable
-blocks/                fourteen small server-rendered gexis/* blocks
-inc/                   tags, query roles, comments, routes, customizer, CV,
+blocks/                fifteen small server-rendered gexis/* blocks
+inc/                   tags, query roles, bento grids, comments, routes, customizer, CV,
                        repository documents; inc/vendor/ holds Parsedown (MIT)
 assets/css/ds/         the design system's token files, verbatim
 assets/fonts/          self-hosted woff2, SIL OFL
@@ -91,8 +97,8 @@ dev/                   a throwaway Docker WordPress and a seed (not shipped)
 
 The `gexis/*` blocks exist because core has no equivalent: the mark, the
 blurred ground, the mono meta line (`28 Sep 2026 · 7 min · 12 comments`),
-older/newer rows with thumbnails, posts grouped by month, the post count, tag
-chips and cards, the CV, the search states, the `Newer · 1 / 4 · Older` pager,
+older and newer as picture cards, posts grouped by month, the post count, tag
+chips and cards, the CV, the search states, *On this page*, the `Newer · 1 / 4 · Older` pager,
 the colour-mode switch, and a document from the Gexis Player repository
 (below). They have no build step: one plain script gives them all a
 server-side preview and sidebar controls in the editor.

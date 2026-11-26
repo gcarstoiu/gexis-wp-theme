@@ -23,8 +23,12 @@ page.
 
 ## Version
 
-**1.1.0**, 24 Oct 2026. What changed lately:
+**1.1.1**, 26 Nov 2026. What changed lately:
 
+- **1.1.1** On the home page and tag pages, every post with a picture is a
+  picture tile with its title on it; a post without one is a text card. The
+  tiles' shade is stronger, so titles stay readable on light pictures. A post
+  can hide its date: *Hide the date* in the editor's Summary panel.
 - **1.1.0** A new layout on every page: each opens with one large card (the
   post's picture with its title on it on the home page and on posts), and
   lists are cards on a grid. Posts get *On this page*; search marks the words
@@ -59,6 +63,8 @@ Requires WordPress 6.6 and PHP 7.4 or later.
    default line is used.
 2. **Featured images** drive the look: the picture headers, the tiles, and the
    blurred ground behind each page all come from them.
+   *Hide the date* (Summary panel, per post) leaves the date out of the post's
+   header and every list.
 3. **About me** in the header opens the owner's author page, which is a CV.
    Fill in *Author page (gexis)* at the bottom of your user profile:
    location, lede, now, summary, links, work, skills, facts and a CV PDF URL.

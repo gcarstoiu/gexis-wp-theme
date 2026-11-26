@@ -54,7 +54,7 @@ $gexis_card = static function ( $post, $first ) {
 		$pic,
 		$tags,
 		esc_html( get_the_title( $post ) ),
-		esc_html( implode( ' · ', array( gexis_date( $post ), gexis_read_time( $post ), gexis_count_comments( $post ) ) ) )
+		esc_html( implode( ' · ', array_filter( array( gexis_hides_date( $post ) ? '' : gexis_date( $post ), gexis_read_time( $post ), gexis_count_comments( $post ) ) ) ) )
 	);
 };
 

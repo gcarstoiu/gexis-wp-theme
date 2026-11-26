@@ -6,7 +6,8 @@
  * one item differently from the next, so the size and look of each cell are
  * set here: the Post Template's class names a cycle, and each <li> gets the
  * next step of that cycle as `--span` / `--rows` and a look class. A post with
- * no image is always a text card, whatever its step asked for.
+ * no image is always a text card, whatever its step asked for. A one-row cell
+ * also gets `gx-cell--short`.
  *
  * Looks: `overlay` (the picture fills the cell, the text sits on it),
  * `photo` (the picture above, the text under it), `text` (a card with the
@@ -27,12 +28,12 @@ function gexis_bento_cycles() {
 	return apply_filters(
 		'gexis_bento_cycles',
 		array(
-			/* Home, after the lead: a wide picture, a tall one, two text cards. */
-			'home'  => array( array( 6, 2, 'overlay' ), array( 3, 2, 'photo' ), array( 3, 1, 'text' ), array( 3, 1, 'text' ) ),
+			/* Home, after the lead: a wide cell, a tall one, two short ones; every post with a picture shows it with its title on it. */
+			'home'  => array( array( 6, 2, 'overlay' ), array( 3, 2, 'overlay' ), array( 3, 1, 'overlay' ), array( 3, 1, 'overlay' ) ),
 			/* Home, next to Guides. */
-			'more'  => array( array( 4, 2, 'photo' ), array( 4, 1, 'text' ), array( 4, 1, 'text' ) ),
+			'more'  => array( array( 4, 2, 'overlay' ), array( 4, 1, 'overlay' ), array( 4, 1, 'overlay' ) ),
 			/* A tag's posts, seven to a cycle. */
-			'tag'   => array( array( 8, 2, 'overlay' ), array( 4, 2, 'photo' ), array( 4, 1, 'text' ), array( 4, 1, 'text' ), array( 4, 2, 'overlay' ), array( 4, 1, 'text' ), array( 4, 1, 'text' ) ),
+			'tag'   => array( array( 8, 2, 'overlay' ), array( 4, 2, 'overlay' ), array( 4, 1, 'overlay' ), array( 4, 1, 'overlay' ), array( 4, 2, 'overlay' ), array( 4, 1, 'overlay' ), array( 4, 1, 'overlay' ) ),
 			/* Three: About me's Lately, the 404's Latest. */
 			'trio'  => array( array( 6, 2, 'overlay' ), array( 3, 2, 'photo' ), array( 3, 2, 'photo' ) ),
 		)
@@ -78,7 +79,8 @@ function gexis_bento_cells( $html, $parsed ) {
 			if ( '' !== $letter ) {
 				$style .= ';--tag:var(--logo-' . $letter . ');--tag-tx:var(--tx-' . $letter . ')';
 			}
-			return sprintf( '<li class="%1$s gx-cell gx-cell--%2$s" style="%3$s"', esc_attr( $li[1] ), esc_attr( $look ), esc_attr( $style ) );
+			$short = 1 === (int) $step[1] ? ' gx-cell--short' : '';
+			return sprintf( '<li class="%1$s gx-cell gx-cell--%2$s%3$s" style="%4$s"', esc_attr( $li[1] ), esc_attr( $look ), $short, esc_attr( $style ) );
 		},
 		$html
 	);

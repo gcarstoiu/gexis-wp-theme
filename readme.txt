@@ -3,7 +3,7 @@ Contributors: gcarstoiu
 Requires at least: 6.6
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -49,6 +49,11 @@ GNU General Public License for more details.
   images in it are generated placeholders. GPLv3 or later.
 
 == Changelog ==
+
+= 1.1.1 =
+* Home and tag pages: every post with a picture is a picture tile with its title on it, in every cell size; a post without one is a text card.
+* Picture tiles are shaded from the top as well, so titles stay readable on light pictures.
+* Hide the date: a per-post switch in the editor's Summary panel; the date is left out of the post's header and every list (post meta gexis_hide_date).
 
 = 1.1.0 =
 * New layout on every page, from the "Front page" design (George, 2026-10-24). Each page opens with one large card: the post's picture with its title on it on the home page and on posts, a head card elsewhere.

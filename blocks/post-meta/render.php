@@ -28,7 +28,9 @@ if ( ! empty( $attributes['bare'] ) ) {
 
 $gexis_parts = array();
 foreach ( array_map( 'trim', explode( ',', (string) ( $attributes['parts'] ?? 'date,time,comments' ) ) ) as $gexis_part ) {
-	if ( 'date' === $gexis_part ) {
+	if ( 'date' === $gexis_part && gexis_hides_date( $gexis_post ) ) {
+		continue;
+	} elseif ( 'date' === $gexis_part ) {
 		$gexis_parts[] = '<time datetime="' . esc_attr( get_the_date( 'c', $gexis_post ) ) . '">' . esc_html( gexis_date( $gexis_post ) ) . '</time>';
 	} elseif ( 'time' === $gexis_part ) {
 		$gexis_parts[] = esc_html( gexis_read_time( $gexis_post ) );

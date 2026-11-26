@@ -7,7 +7,7 @@ Description: A block theme for gexis, a personal site in four parts — gazette,
 Requires at least: 6.6
 Tested up to: 6.8
 Requires PHP: 7.4
-Version: 1.1.0
+Version: 1.1.1
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: gexis
@@ -584,7 +584,8 @@ a.gx-tag:hover { color: var(--tag-tx, var(--ink-muted)); }
 }
 .gx-cell--overlay .gx-tile__image { position: absolute; inset: 0; border-radius: inherit; }
 .gx-cell--overlay .gx-tile__image::after {
-	background: linear-gradient(180deg, rgba(8, 12, 16, 0) 40%, rgba(8, 12, 16, 0.9) 100%);
+	/* shaded from the top too: light pictures (charts, diagrams) keep the title readable */
+	background: linear-gradient(180deg, rgba(8, 12, 16, 0.2) 0%, rgba(8, 12, 16, 0.55) 45%, rgba(8, 12, 16, 0.92) 100%);
 	box-shadow: inset 0 0 0 1px var(--line-strong);
 }
 .gx-cell--overlay .gx-tile__text { position: relative; z-index: 1; padding: clamp(22px, 5cqi, 32px); }
@@ -597,6 +598,12 @@ a.gx-tag:hover { color: var(--tag-tx, var(--ink-muted)); }
 }
 .gx-cell--overlay .gx-tile__meta { color: rgba(233, 238, 242, 0.72); }
 .gx-cell--overlay .gx-tag { color: var(--tag, #e9eef2); }
+/* overlay in a one-row cell (wide screens): the text card's type, and a shade over the whole picture */
+@media (min-width: 901px) {
+	.gx-cell--overlay.gx-cell--short .gx-tile__text { padding: 22px; gap: 12px; }
+	.gx-cell--overlay.gx-cell--short .gx-tile__title { font-size: 20px; line-height: 1.25; letter-spacing: 0; }
+	.gx-cell--overlay.gx-cell--short .gx-tile__image::after { background: linear-gradient(180deg, rgba(8, 12, 16, 0.55) 0%, rgba(8, 12, 16, 0.92) 100%); }
+}
 
 /* text: a card with the first tag's colour along the top */
 .gx-cell--text .gx-tile {

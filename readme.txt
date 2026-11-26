@@ -3,7 +3,7 @@ Contributors: gcarstoiu
 Requires at least: 6.6
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -49,6 +49,9 @@ GNU General Public License for more details.
   images in it are generated placeholders. GPLv3 or later.
 
 == Changelog ==
+
+= 1.1.2 =
+* Titles on pictures (post headers, picture tiles, the older/newer cards, the archive's wide cards) get a thin dark contour and a soft shadow; the line under them a faint shadow.
 
 = 1.1.1 =
 * Home and tag pages: every post with a picture is a picture tile with its title on it, in every cell size; a post without one is a text card.

@@ -7,7 +7,7 @@ Description: A block theme for gexis, a personal site in four parts — gazette,
 Requires at least: 6.6
 Tested up to: 6.8
 Requires PHP: 7.4
-Version: 1.1.1
+Version: 1.1.2
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: gexis
@@ -696,6 +696,23 @@ a.gx-tag:hover { color: var(--tag-tx, var(--ink-muted)); }
 	border: 1px solid var(--line-strong);
 }
 .gx-hero:not(:has(.gx-hero__image)) .is-style-gx-pill .gx-tag { background: var(--fill); color: var(--tag-tx, var(--ink-muted)); }
+
+/* ── titles on pictures: a thin dark contour and a soft shadow ──────────── */
+
+.gx-hero:has(.gx-hero__image) .gx-hero__title,
+.gx-cell--overlay .gx-tile__title,
+.gx-nav-card.has-image .gx-nav-card__title,
+.gx-month-card--wide .gx-month-card__title {
+	-webkit-text-stroke: max(1.5px, 0.05em) rgba(8, 12, 16, 0.8);
+	paint-order: stroke fill;
+	text-shadow: 0 2px 12px rgba(8, 12, 16, 0.5);
+}
+.gx-hero:has(.gx-hero__image) .gx-hero__excerpt,
+.gx-hero:has(.gx-hero__image) .gx-hero__meta,
+.gx-hero:has(.gx-hero__image) .gx-byline,
+.gx-cell--overlay .gx-tile__meta,
+.gx-nav-card.has-image .gx-label,
+.gx-month-card--wide .gx-meta { text-shadow: 0 1px 2px rgba(8, 12, 16, 0.7); }
 
 /* ── home ───────────────────────────────────────────────────────────────── */
 

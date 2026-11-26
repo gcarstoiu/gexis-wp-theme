@@ -23,8 +23,10 @@ page.
 
 ## Version
 
-**1.1.1**, 26 Nov 2026. What changed lately:
+**1.1.2**, 26 Nov 2026. What changed lately:
 
+- **1.1.2** Titles on pictures get a thin dark contour and a soft shadow, so
+  they read on light and busy pictures too.
 - **1.1.1** On the home page and tag pages, every post with a picture is a
   picture tile with its title on it; a post without one is a text card. The
   tiles' shade is stronger, so titles stay readable on light pictures. A post
